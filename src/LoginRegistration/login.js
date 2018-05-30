@@ -20,6 +20,7 @@ class Login extends Component {
 
         fetch(`http://localhost:8088/users?username=${this.state.username}`)
             .then(r => r.json())
+
             .then(users => {
                 const user = users[0]
                 console.log(user)
@@ -34,6 +35,7 @@ class Login extends Component {
                     sessionStorage.setItem("userId", user.id)
                 }
             })
+            
     }.bind(this)
 
     handleFormFieldChange = function (evt) {
