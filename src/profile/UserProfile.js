@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 
 class UserProfile extends Component {
+    // set default data for the component
+    // if xhr request does not complete the default information will let you know
     constructor(props) {
         super(props)
 
@@ -17,17 +19,17 @@ class UserProfile extends Component {
         }
     }
 
-
+    // on component mount, request userid by the property userId
     componentDidMount() {
         fetch(`http://localhost:8088/users/${this.props.userId}`)
         .then(r => r.json()) 
 
         .then(response => {
-            console.log(response)
             this.setState(response)
         })
     }
 
+    // render the component based on information in the state
     render() {
         return (
             <div>
