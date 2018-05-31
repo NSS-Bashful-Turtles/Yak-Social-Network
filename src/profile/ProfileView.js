@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Hero, Container, HeroBody, Title, Box, Button, Section } from 'bloomer';
 import './Profile.css'
-import Posts from '../newsfeed/posts';
 import ProfileHeader from './ProfileHeader';
+import UserPosts from './UserPosts';
 
 class ProfileView extends Component {
     // set default data for the component
@@ -79,12 +79,9 @@ class ProfileView extends Component {
                 <Section>
                     <Button disabled="true">Change Theme</Button>
                 </Section>
-                <Box>
-                    <Title>Recent Posts</Title>
-                    {this.state.recentPosts.map(p => (
-                        <Posts image={p.image} content={p.content} key={p.id} />
-                    ))}
-                </Box>
+                <UserPosts 
+                    recentPosts={this.state.recentPosts}
+                />
             </div>
         )
     }
