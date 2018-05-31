@@ -6,7 +6,7 @@ class FriendList extends Component {
     state = { friends: [] }
 
     componentDidMount() {
-        fetch(`http://localhost:8088/friendships?user1Id=1`)
+        fetch(`http://localhost:8088/friendships?user1Id=1&?user2id=1`)
             // Must be explicit on how to parse the response
             .then(response => response.json())
 
