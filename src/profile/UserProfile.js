@@ -29,6 +29,7 @@ class UserProfile extends Component {
 
             .then(r => r.json())
 
+            //set properties that are provided by the user request
             .then(response => {
                 this.setState({
                     userId: response.userId,
@@ -39,6 +40,7 @@ class UserProfile extends Component {
                 })
             })
 
+        //fetch the 5 most recent posts by the user and update the response array in the component state
         fetch(`http://localhost:8088/posts?userId=${this.props.userId}&_limit=5`)
             .then(r => r.json())
             .then(response => {
