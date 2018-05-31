@@ -24,6 +24,7 @@ ReactDOM.render(
         <div>
             <NavBar />
             <Route path="/profile/:userId" component={UserProfile} />
+            <Route path="/:userId" component={Dashboard} />
         </div>
     </Router>
     , document.getElementById('root'));
