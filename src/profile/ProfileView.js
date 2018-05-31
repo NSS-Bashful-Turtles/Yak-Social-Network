@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Hero, Container, HeroBody, Title, Box, Button, Section } from 'bloomer';
-import './Profile.css'
 import ProfileHeader from './ProfileHeader';
 import UserPosts from './UserPosts';
+import UserProfileInteraction from './UserProfileInteraction';
+import OtherProfileButtons from './OtherProfileButtons';
 
 class ProfileView extends Component {
     // set default data for the component
@@ -76,10 +77,20 @@ class ProfileView extends Component {
                     last={this.state.name.last}
                     location={this.state.location}
                 />
-                <Section>
-                    <Button disabled="true">Change Theme</Button>
-                </Section>
-                <UserPosts 
+
+
+                {/* checks the is current user boolean
+                    and if true loads user profile interaction component
+                    if false, loads interaction for other users profiles component
+                */}
+
+                {this.state.isCurrentUser ? (
+                    <UserProfileInteraction />
+                ) : (
+                    <OtherProfileButtons />
+                )}
+
+                <UserPosts
                     recentPosts={this.state.recentPosts}
                 />
             </div>
