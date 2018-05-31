@@ -8,6 +8,9 @@ import registerServiceWorker from './registerServiceWorker';
 import ProfileView from './profile/ProfileView'
 import NewsFeed from './newsfeed/newsfeed'
 import ProfileHeader from './profile/ProfileHeader'
+import UserProfile from './profile/UserProfile'
+import FriendList from './friends/FriendList'
+
 
 
 ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
