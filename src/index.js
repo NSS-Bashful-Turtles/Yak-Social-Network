@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import UserProfile from './profile/UserProfile'
 import NewsFeed from './newsfeed/newsfeed'
 import LoginPage from './LoginRegistration/loginRegistrationPage'
+import FriendList from './friends/FriendList'
 
 
 ReactDOM.render(<LoginPage />, document.getElementById('root'));
