@@ -39,7 +39,7 @@ class UserProfile extends Component {
                 })
             })
 
-        fetch(`http://localhost:8088/posts?userId=${this.props.userId}`)
+        fetch(`http://localhost:8088/posts?userId=${this.props.userId}&_limit=5`)
             .then(r => r.json())
             .then(response => {
                 this.setState({
@@ -66,7 +66,7 @@ class UserProfile extends Component {
                 <Box>
                     <Title>Recent Posts</Title>
                 {this.state.recentPosts.map(p => (
-                    <Posts image={p.image} content={p.content}/>
+                    <Posts image={p.image} content={p.content} key={p.id}/>
                 ))}
                 </Box>
             </div>
