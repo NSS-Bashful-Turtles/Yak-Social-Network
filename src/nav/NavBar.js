@@ -15,7 +15,7 @@ class NavBar extends Component {
     render() {
         return (
         <Navbar>
-            <NavbarItem href={"/" + this.state.currentUser}>Home</NavbarItem>
+            <NavbarItem href={"/home/" + this.state.currentUser}>Home</NavbarItem>
             <Control>
                 <Input type="text" placeholder="Search"></Input>
             </Control>
