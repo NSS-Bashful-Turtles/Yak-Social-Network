@@ -8,7 +8,8 @@ class Registration extends Component {
         location: "",
         email: "",
         username: "",
-        password: ""
+        password: "",
+        errorMessage: "You must complete every field"
     }
 
     handleFormFieldChange = function (evt) {
@@ -32,17 +33,53 @@ class Registration extends Component {
             image: ""
         }
 
-        fetch("http://localhost:8088/users",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newUser)
-        })
-        .then(r => r.json())
-        .then(user => {
-            sessionStorage.setItem("userId", user.id)
-            localStorage.clear()
+        
+        fetch("http://localhost:8088/users")
+        .then(r=>r.json())
+        .then(users => {
+
+            let emailUniqueCheck = true
+            let usernameUniqueCheck = true
+
+            users.forEach(user => {
+                if(user.username === newUser.username){
+                    usernameUniqueCheck = false
+                }
+                if (user.email === newUser.email) {
+                    emailUniqueCheck = false
+                }
+            })
+
+            if(
+                this.state.firstName === "" ||
+                this.state.firstName === "" ||
+                this.state.location === "" ||
+                this.state.email === "" ||
+                this.state.username === "" ||
+                this.state.password === ""
+            ) {
+                alert(this.state.errorMessage)
+            }else if(!emailUniqueCheck){
+                emailUniqueCheck = true
+                alert("Email is already registered")
+            }else if(!usernameUniqueCheck){
+                usernameUniqueCheck = true
+                alert("Username exists")
+            }else {
+
+                fetch("http://localhost:8088/users",{
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newUser)
+                })
+                .then(r => r.json())
+                .then(user => {
+                    sessionStorage.setItem("userId", user.id)
+                    localStorage.clear()
+                })
+            }
         })
     }.bind(this)
 
