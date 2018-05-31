@@ -6,24 +6,70 @@ class Publish extends Component {
         super(props)
 
         this.state = {
-            image: ""
+            post: {
+                "userId": "",
+                "timeStamp": "",
+                "content": "",
+                "image": "",
+                "receiverId": "null",
+                "private": "false"
+            }
         }
     }
+
+    handleFormFieldChange = function (evt) {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }.bind(this)
+
     makePublicPost = function(){
-        const publicPostText = document.getElementById("publish-input").value;
-        console.log(publicPostText)
-    }
+        const newPost = {
+            userId: "1",
+            timeStamp: new Date(),
+            content: this.state.content,
+            image: "",
+            receiverId: "null",
+            private: "false"
+        }
+        fetch("http://localhost:8088/posts",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newPost)
+        })
+    }.bind(this);
+
+    makePrivatePost = function(){
+        const newPost = {
+            userId: "1",
+            timeStamp: new Date(),
+            content: this.state.content,
+            image: "",
+            receiverId: "null",
+            private: "true"
+        }
+        fetch("http://localhost:8088/posts",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newPost)
+        })
+    }.bind(this);
+
+
     render() {
         return (
-
             <div>
-
                 <div className="publish">
                     <h3 >MAKE A POST</h3>
-                    <input id="publish-input" type="text" placeholder="Add your text here"/>
+                    <input id="content" onChange={this.handleFormFieldChange} type="text" placeholder="Add your text here"/>
                 </div>
                 <button id="publicPost" onClick={this.makePublicPost}>Public Post></button>
-                <button id="privatePost">Private Post></button>
+                {/* waiting to get friends here */}
+                <button id="privatePost" onClick={this.makePrivatePost}>Private Post></button>
             </div>
         )
     }
