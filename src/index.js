@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Login from './LoginRegistration/login'
 import 'bulma/css/bulma.min.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import UserProfile from './profile/UserProfile'
-import NewsFeed from './newsfeed/NewsFeed'
+import ProfileView from './profile/ProfileView'
+import NewsFeed from './newsfeed/newsfeed'
+import ProfileHeader from './profile/ProfileHeader'
+import FriendList from './friends/FriendList'
 
-// ReactDOM.render(<UserProfile userId="1"/>, document.getElementById('root'));
-ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
+
+
+ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
+// ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
 registerServiceWorker();
