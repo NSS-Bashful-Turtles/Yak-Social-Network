@@ -6,7 +6,7 @@ import 'bulma/css/bulma.min.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import UserProfile from './profile/UserProfile'
-import NewsFeed from './newsfeed/newsfeed'
+import FriendList from './friends/FriendList'
 
 
 ReactDOM.render(<UserProfile userId="1"/>, document.getElementById('root'));
