@@ -9,9 +9,10 @@ import ProfileView from './profile/ProfileView'
 import NewsFeed from './newsfeed/newsfeed'
 import ProfileHeader from './profile/ProfileHeader'
 import FriendList from './friends/FriendList'
+import Dashboard from './dashboard/Dashboard';
 
 
 
-ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
+ReactDOM.render(<Dashboard userId="1"/>, document.getElementById('root'));
 // ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
 registerServiceWorker();
