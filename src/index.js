@@ -5,6 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import UserProfile from './profile/UserProfile';
 import NavBar from './nav/NavBar';
+import Login from './LoginRegistration/login'
 import './index.css';
 
 
@@ -12,7 +13,7 @@ import './index.css';
 
 
 ReactDOM.render(
-<Router>
+ <Router>
     <div>
         <NavBar/>
         <Route path="/profile/:userId" component={UserProfile}/>

@@ -29,7 +29,7 @@ class UserProfile extends Component {
         fetch(`http://localhost:8088/users/${this.props.match.params.userId}`)
         .then(r => r.json())
 
-            .then(r => r.json())
+
 
             //set properties that are provided by the user request
             .then(response => {
@@ -43,7 +43,7 @@ class UserProfile extends Component {
             })
 
         //fetch the 5 most recent posts by the user and update the response array in the component state
-        fetch(`http://localhost:8088/posts?userId=${this.props.userId}&_limit=5`)
+        fetch(`http://localhost:8088/posts?userId=${this.props.match.params.userId}&_limit=5`)
             .then(r => r.json())
             .then(response => {
                 this.setState({
