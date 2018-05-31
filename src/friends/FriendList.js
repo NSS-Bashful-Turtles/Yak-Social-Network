@@ -3,7 +3,7 @@ import Friend from "./friend"
 
 class FriendList extends Component {
 
-    state = { friendships: [] }
+    state = { friends: [] }
 
     componentDidMount() {
         fetch(`http://localhost:8088/friendships?user1Id=1`)
@@ -16,6 +16,7 @@ class FriendList extends Component {
                 this.setState({
                     friends: apiFriends
                 })
+
             })
 
     }
@@ -23,8 +24,7 @@ class FriendList extends Component {
     render() {
         return (
             <div>
-                {this.state.friends.map( p => <Friend name={p.user1ID} />
-                )}
+                    {this.state.friends.map(p => (<Friend name= {p.user1Id} />))}
             </div>
         )
     }
