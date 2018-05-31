@@ -1,9 +1,24 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import UserProfile from './profile/UserProfile'
+import UserProfile from './profile/UserProfile';
+import NavBar from './nav/NavBar';
+import './index.css';
 
-ReactDOM.render(<UserProfile userId="1"/>, document.getElementById('root'));
+
+
+
+
+ReactDOM.render(
+<Router>
+    <div>
+        <NavBar/>
+        <Route path="/profile/:userId" component={UserProfile}/>
+    </div>
+</Router>
+    , document.getElementById('root'));
 registerServiceWorker();
+
+/* <UserProfile userId="1"/> */

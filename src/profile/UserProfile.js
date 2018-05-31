@@ -6,6 +6,7 @@ class UserProfile extends Component {
     // if xhr request does not complete the default information will let you know
     constructor(props) {
         super(props)
+        console.log(this.props.match.params.userId)
 
         this.state = {
             userId: "FakerUserName",
@@ -21,8 +22,8 @@ class UserProfile extends Component {
 
     // on component mount, request userid by the property userId
     componentDidMount() {
-        fetch(`http://localhost:8088/users/${this.props.userId}`)
-        .then(r => r.json()) 
+        fetch(`http://localhost:8088/users/${this.props.match.params.userId}`)
+        .then(r => r.json())
 
         .then(response => {
             this.setState(response)
