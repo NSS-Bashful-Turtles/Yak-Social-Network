@@ -10,12 +10,9 @@ class Login extends Component {
     handleSubmit = function (evt) {
         evt.preventDefault()
 
-        console.log(document.getElementById("checkbox"))
-
         const thisUser = {
             username: this.state.username,
-            password: this.state.password,
-            remember: this.state.remember
+            password: this.state.password
         }
 
         fetch(`http://localhost:8088/users?username=${this.state.username}`)
@@ -29,13 +26,15 @@ class Login extends Component {
                 } else if (this.state.password === user.password) {
                     const remember = document.getElementById("checkbox").value
                     console.log(remember)
-                    if (remember === "true") {
+                    if (remember.checked === true) {
                         localStorage.setItem("userId", user.id)
+                    } else {
+                        localStorage.clear()
                     }
                     sessionStorage.setItem("userId", user.id)
                 }
             })
-            
+
     }.bind(this)
 
     handleFormFieldChange = function (evt) {
