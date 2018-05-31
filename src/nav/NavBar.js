@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
+
+// Using bloomer tags to import bulma styling
 import {Navbar, NavbarItem, Input, Control, Button} from "bloomer";
 import 'bulma/css/bulma.css'
 
 class NavBar extends Component {
-
+// Storing session storage as an object in state named currentUser
     state = {
         currentUser: sessionStorage.getItem('userId')
     }
 
+// Line 24: Session user is grabbed and profile page is loaded upon profile click
     render() {
         return (
         <Navbar>
