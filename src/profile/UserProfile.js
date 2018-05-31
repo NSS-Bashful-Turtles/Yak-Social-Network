@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Hero, Container, HeroBody } from 'bloomer';
-
+import { Hero, Container, HeroBody, Title, Box } from 'bloomer';
+import './Profile.css'
+import Posts from '../newsfeed/posts';
 
 
 class UserProfile extends Component {
@@ -17,7 +18,8 @@ class UserProfile extends Component {
             },
             email: "fake@fakesite.fake",
             location: "api request did not complete",
-            image: "https://placeimg.com/200/200/people"
+            image: "https://placeimg.com/200/200/people",
+            recentPosts: []
         }
     }
 
@@ -28,25 +30,46 @@ class UserProfile extends Component {
             .then(r => r.json())
 
             .then(response => {
-                this.setState(response)
-
-                //set background image of hero element
-                const hero = document.querySelector(".hero")
-                hero.style.backgroundImage = `url(${this.state.image})`
+                this.setState({
+                    userId: response.userId,
+                    name: response.name,
+                    email: response.email,
+                    location: response.location,
+                    image: response.image
+                })
             })
+
+        fetch(`http://localhost:8088/posts?userId=${this.props.userId}`)
+            .then(r => r.json())
+            .then(response => {
+                this.setState({
+                    recentPosts: response
+                })
+            })
+
+
     }
 
     // render the component based on information in the state
     render() {
         return (
-            <Hero >
-                <HeroBody>
-                    <Container>
-                        <h2>Name: {this.state.name.first} {this.state.name.last}</h2>
-                        <p>Location: {this.state.location}</p>
-                    </Container>
-                </HeroBody>
-            </Hero>
+            <div>
+                <Hero>
+                    <HeroBody>
+                        <Container>
+                            <img className="is-pulled-left" src={this.state.image}/>
+                            <Title>Name: {this.state.name.first} {this.state.name.last}</Title>
+                            <p>Location: {this.state.location}</p>
+                        </Container>
+                    </HeroBody>
+                </Hero>
+                <Box>
+                    <Title>Recent Posts</Title>
+                {this.state.recentPosts.map(p => (
+                    <Posts image={p.image} content={p.content}/>
+                ))}
+                </Box>
+            </div>
         )
     }
 }
