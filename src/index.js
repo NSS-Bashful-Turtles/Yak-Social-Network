@@ -3,9 +3,14 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import UserProfile from './profile/ProfileView';
+
+import ProfileView from './profile/ProfileView'
+import NewsFeed from './newsfeed/Newsfeed'
+
+
 import NavBar from './nav/NavBar';
-import NewsFeed from './newsfeed/newsfeed'
+
+
 import ProfileHeader from './profile/ProfileHeader'
 import FriendList from './friends/FriendList'
 import Dashboard from './dashboard/Dashboard';
@@ -23,9 +28,14 @@ ReactDOM.render(
     <Router>
         <div>
             <NavBar />
-            <Route path="/profile/:userId" component={UserProfile} />
+            <Route path="/profile/:userId" component={ProfileView} />
             <Route path="/home/:userId" component={Dashboard} />
         </div>
     </Router>
+
+//   ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
+  // ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
+
+
     , document.getElementById('root'));
 registerServiceWorker();
