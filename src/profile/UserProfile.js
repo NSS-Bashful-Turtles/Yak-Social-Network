@@ -24,6 +24,7 @@ class UserProfile extends Component {
     // on component mount, request userid by the property userId
     componentDidMount() {
         fetch(`http://localhost:8088/users/${this.props.userId}`)
+
             .then(r => r.json())
 
             .then(response => {
@@ -31,7 +32,6 @@ class UserProfile extends Component {
 
                 //set background image of hero element
                 const hero = document.querySelector(".hero")
-
                 hero.style.backgroundImage = `url(${this.state.image})`
             })
     }
