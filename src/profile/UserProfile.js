@@ -22,7 +22,7 @@ class UserProfile extends Component {
     // on component mount, request userid by the property userId
     componentDidMount() {
         fetch(`http://localhost:8088/users/${this.props.userId}`)
-        .then(r => r.json()) 
+        .then(r => r.json())
 
         .then(response => {
             this.setState(response)
