@@ -24,7 +24,7 @@ class Login extends Component {
                 if (user === undefined || user.password !== this.state.password) {
                     alert(this.state.errorMessage)
                 } else if (this.state.password === user.password) {
-                    const remember = document.getElementById("checkbox").value
+                    const remember = document.getElementById("checkbox")
                     console.log(remember)
                     if (remember.checked === true) {
                         localStorage.setItem("userId", user.id)
