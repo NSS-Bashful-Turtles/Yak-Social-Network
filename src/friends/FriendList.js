@@ -12,11 +12,21 @@ class FriendList extends Component {
 
             // JSON parsed data comes to this then()
             .then(apiFriends => {
-
-                this.setState({
-                    friends: apiFriends
+                fetch('http://localhost:8088/users')
+                .then(response => response.json())
+                .then(users => {
+                    let friendUser = []
+                    users.forEach( user => {
+                        apiFriends.forEach( friend =>{
+                            if (friend.user2Id === user.id){
+                                friendUser.push(user)
+                            }
+                        })
+                    })
+                    this.setState({
+                        friends:friendUser
+                    })
                 })
-
             })
 
     }
@@ -24,7 +34,7 @@ class FriendList extends Component {
     render() {
         return (
             <div>
-                    {this.state.friends.map(p => (<Friend name= {p.user1Id} />))}
+                    {this.state.friends.map(p => (<Friend first={p.name.first} last= {p.name.last}/>))}
             </div>
         )
     }

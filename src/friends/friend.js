@@ -5,7 +5,7 @@ class Friend extends Component {
     render() {
         return (
             <article>
-                <h2>{this.props.name}</h2>
+                <h2>{this.props.first} {this.props.last}</h2>
             </article>
         )
     }
