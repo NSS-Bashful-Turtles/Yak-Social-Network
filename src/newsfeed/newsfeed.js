@@ -12,7 +12,7 @@ class NewsFeed extends Component {
         }
     }
     loadPublicPosts = function(){
-        fetch(`http://localhost:8088/posts?private=false`)
+        fetch(`http://localhost:8088/posts?private=false&_expand=user`)
         .then(r => r.json())
         .then(response => {
             this.setState({
@@ -20,8 +20,9 @@ class NewsFeed extends Component {
             })
         })
     }.bind(this);
+
     loadPrivatePosts = function(){
-        fetch(`http://localhost:8088/posts?private=true`)
+        fetch(`http://localhost:8088/posts?userId=2&private=true&_expand=user`)
         .then(r => r.json())
         .then(response => {
             this.setState({
@@ -44,7 +45,13 @@ class NewsFeed extends Component {
 
                 {
                 this.state.posts.map(element => (
-                    <Posts image={element.image} content={element.content} key={element.id}/>
+                    <Posts image={element.image}
+                    content={element.content}
+                    key={element.id}
+                    firstName={element.user.name.first}
+                    lastName={element.user.name.last}
+                    userImage={element.user.image}
+                    />
                 ))
                 }
             </div>
