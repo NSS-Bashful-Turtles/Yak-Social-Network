@@ -28,7 +28,7 @@ class ProfileView extends Component {
 
     // on component mount, request userid by the property userId
     componentDidMount() {
-        fetch(`http://localhost:8088/users/${this.props.userId}`)
+        fetch(`http://localhost:8088/users/${this.props.match.params.userId}`)
 
             .then(r => r.json())
 
