@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import Posts from "./posts"
+import Posts from "./Posts"
+import Publish from "./Publish"
+import "./newsfeed.css"
 
 class NewsFeed extends Component {
     // set default data for the component
@@ -40,9 +42,12 @@ class NewsFeed extends Component {
     render() {
         return (
             <div>
+                <Publish />
+                <div className="newsfeed-header">
+                <h1>NEWSFEED</h1>
                 <button value="Public Posts" onClick={this.loadPublicPosts}>Public Posts</button>
                 <button value="Private Posts" onClick={this.loadPrivatePosts}>Private Posts</button>
-
+                </div>
                 {
                 this.state.posts.map(element => (
                     <Posts image={element.image}
@@ -51,11 +56,12 @@ class NewsFeed extends Component {
                     firstName={element.user.name.first}
                     lastName={element.user.name.last}
                     userImage={element.user.image}
+                    userName={element.user.username}
+                    timeStamp={element.timeStamp}
                     />
                 ))
                 }
             </div>
-
         )
 
     }
