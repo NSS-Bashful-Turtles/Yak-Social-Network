@@ -4,6 +4,7 @@ import { Route, Link } from "react-router-dom";
 // Using bloomer tags to import bulma styling
 import { Navbar, NavbarItem, Input, Control, Button, NavbarBurger, NavbarBrand, NavbarMenu } from "bloomer";
 import 'bulma/css/bulma.css'
+import './NavBar.css'
 
 class NavBar extends Component {
 
@@ -18,7 +19,7 @@ class NavBar extends Component {
 
     // event handler for clicking nav drop down burger
     // sets isActive property in state to the opposite of what it currently is
-    onClickNav = function() {
+    onClickNav = function () {
         this.setState({
             isActive: (!this.state.isActive)
         })
@@ -33,11 +34,11 @@ class NavBar extends Component {
                     <NavbarBurger isActive={this.state.isActive} onClick={this.onClickNav} />
                 </NavbarBrand>
                 <NavbarMenu isActive={this.state.isActive} onClick={this.onClickNav}>
-                <NavbarItem href={"/home/" + this.state.currentUser}>Home</NavbarItem>
-                <Control>
-                    <Input type="text" placeholder="Search"></Input>
-                </Control>
-                <Button isColor="info" isOutlined>S</Button>
+                    <NavbarItem href={"/home/" + this.state.currentUser}>Home</NavbarItem>
+                    <Control>
+                        <Input id="input__search" type="text" placeholder="Search"></Input>
+                        <Button isColor="info" isOutlined>S</Button>
+                    </Control>
                     <NavbarItem href="/">Notifications</NavbarItem>
                     <NavbarItem href={"/profile/" + this.state.currentUser}>Jacob</NavbarItem>
                     <NavbarItem href={"/"}>Logout</NavbarItem>
