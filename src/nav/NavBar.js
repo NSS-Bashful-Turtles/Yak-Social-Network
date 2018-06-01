@@ -8,7 +8,19 @@ import 'bulma/css/bulma.css'
 class NavBar extends Component {
 // Storing session storage as an object in state named currentUser
     state = {
-        currentUser: sessionStorage.getItem('userId')
+        currentUser: sessionStorage.getItem('userId'),
+        firstName: ""
+    }
+
+    componentDidMount() {
+        fetch(`http://127.0.0.1:8088/users/${this.props.match.params.userId}`)
+        .then(r => r.json())
+        .then(response => {
+            console.log(response)
+            // this.setState({
+            //     firstName: response
+            // })
+        })
     }
 
 // Line 24: Session user is grabbed and profile page is loaded upon profile click
