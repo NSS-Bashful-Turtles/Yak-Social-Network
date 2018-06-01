@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 
 // Using bloomer tags to import bulma styling
-import { Navbar, NavbarItem, Input, Control, Button, NavbarBurger, NavbarBrand, NavbarMenu } from "bloomer";
+import { Navbar, NavbarItem, Input, Control, Button, NavbarBurger, NavbarBrand, NavbarMenu, NavbarLink, NavbarDropdown } from "bloomer";
 import 'bulma/css/bulma.css'
 import './NavBar.css'
 
@@ -14,7 +14,9 @@ class NavBar extends Component {
         this.state = {
             currentUser: sessionStorage.getItem('userId'),
             isActive: false,
-            firstName: ""
+            firstName: "",
+            searchValue: "",
+            searchType: "Search for"
         }
     }
 
@@ -49,6 +51,18 @@ class NavBar extends Component {
         */
     }.bind(this)
 
+    handleSearchKeyPress = function (event) {
+        this.setState({
+            searchValue: event.target.value,
+        })
+    }.bind(this)
+
+    handleSearchTypeChange = function (event) {
+        this.setState({
+            searchType: event.target.textContent
+        })
+    }.bind(this)
+
     // Line 24: Session user is grabbed and profile page is loaded upon profile click
     render() {
         return (
@@ -59,8 +73,16 @@ class NavBar extends Component {
                 </NavbarBrand>
                 <NavbarMenu isActive={this.state.isActive}>
                     <NavbarItem href={"/home/" + this.state.currentUser} onClick={this.onClickNav}>Home</NavbarItem>
-                    <Input id="input__search" type="text" placeholder="Search" ></Input>
-                    <Button isColor="info" onClick={this.onClickSearch} isOutlined><i class="material-icons">search</i></Button>
+                    <NavbarItem hasDropdown isHoverable>
+                        <NavbarLink>{this.state.searchType}</NavbarLink>
+                        <NavbarDropdown>
+                            <NavbarItem onClick={this.handleSearchTypeChange}>users</NavbarItem>
+                            <NavbarItem onClick={this.handleSearchTypeChange}>posts</NavbarItem>
+                            <NavbarItem onClick={this.handleSearchTypeChange}>events</NavbarItem>
+                        </NavbarDropdown>
+                    </NavbarItem>
+                    <Input id="input__search" type="text" placeholder="Search" onChange={this.handleSearchKeyPress}></Input>
+                    <NavbarItem href={"/search/" + this.state.searchType + "/" + this.state.searchValue}><Button isColor="info" onClick={this.onClickSearch} isOutlined><i className="material-icons">search</i></Button></NavbarItem>
                     <NavbarItem href="/" onClick={this.onClickNav}>Notifications</NavbarItem>
                     <NavbarItem href={"/profile/" + this.state.currentUser} onClick={this.onClickNav}>{this.state.firstName}</NavbarItem>
                     <NavbarItem href={"/"} onClick={this.onClickNav}>Logout</NavbarItem>
