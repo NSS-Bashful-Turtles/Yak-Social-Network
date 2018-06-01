@@ -12,7 +12,7 @@ class Dashboard extends Component {
                 <Title>Dashboard</Title>
                 <NewsFeed />
                 <FriendList />
-            </Container>
+            </Container
         )
     }
 }
