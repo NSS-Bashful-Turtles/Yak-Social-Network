@@ -14,7 +14,8 @@ class NavBar extends Component {
         this.state = {
             currentUser: sessionStorage.getItem('userId'),
             isActive: false,
-            firstName: ""
+            firstName: "",
+            image: ""
         }
     }
 
@@ -23,8 +24,10 @@ class NavBar extends Component {
         fetch(`http://127.0.0.1:8088/users/${this.state.currentUser}`)
             .then(r => r.json())
             .then(response => {
+                console.log(response)
                 this.setState({
-                    firstName: response.name.first
+                    firstName: response.name.first,
+                    image: response.image
                 })
             })
     }
@@ -43,8 +46,8 @@ class NavBar extends Component {
         //fire function to close navbar
         this.onClickNav()
 
-        /* 
-            add code here 
+        /*
+            add code here
             to fire search functionality
         */
     }.bind(this)
@@ -60,9 +63,9 @@ class NavBar extends Component {
                 <NavbarMenu isActive={this.state.isActive}>
                     <NavbarItem href={"/home/" + this.state.currentUser} onClick={this.onClickNav}>Home</NavbarItem>
                     <Input id="input__search" type="text" placeholder="Search" ></Input>
-                    <Button isColor="info" onClick={this.onClickSearch} isOutlined><i class="material-icons">search</i></Button>
+                    <Button isColor="info" onClick={this.onClickSearch} isOutlined><i className="material-icons">search</i></Button>
                     <NavbarItem href="/" onClick={this.onClickNav}>Notifications</NavbarItem>
-                    <NavbarItem href={"/profile/" + this.state.currentUser} onClick={this.onClickNav}>{this.state.firstName}</NavbarItem>
+                    <NavbarItem href={"/profile/" + this.state.currentUser} onClick={this.onClickNav}><img className="image is-24x24" src={this.state.image}></img>{this.state.firstName}</NavbarItem>
                     <NavbarItem href={"/"} onClick={this.onClickNav}>Logout</NavbarItem>
                 </NavbarMenu>
             </Navbar>

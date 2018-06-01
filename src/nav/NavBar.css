@@ -2,3 +2,9 @@
     width: 200px;
     margin-right: 1em;
 }
+
+.image {
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+}
