@@ -16,6 +16,7 @@ import FriendList from './friends/FriendList'
 import Dashboard from './dashboard/Dashboard';
 import Login from './LoginRegistration/login'
 import './index.css';
+import Search from "./search/Search";
 
 
 
@@ -30,6 +31,7 @@ ReactDOM.render(
             <NavBar />
             <Route path="/profile/:userId" component={ProfileView} />
             <Route path="/home/:userId" component={Dashboard} />
+            <Route path="/search/:searchType/:searchValue" component={Search} />
         </div>
     </Router>
 
