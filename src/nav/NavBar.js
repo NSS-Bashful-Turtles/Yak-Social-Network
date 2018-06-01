@@ -78,7 +78,7 @@ class NavBar extends Component {
                         <NavbarDropdown>
                             <NavbarItem onClick={this.handleSearchTypeChange}>People</NavbarItem>
                             <NavbarItem onClick={this.handleSearchTypeChange}>Posts</NavbarItem>
-                            <NavbarItem disabled="true">Events</NavbarItem>
+                            <NavbarItem onClick={this.handleSearchTypeChange}>Events</NavbarItem>
                         </NavbarDropdown>
                     </NavbarItem>
                     <Input id="input__search" type="text" placeholder="Search" onChange={this.handleSearchKeyPress}></Input>
