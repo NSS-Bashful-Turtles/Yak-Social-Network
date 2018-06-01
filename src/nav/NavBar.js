@@ -11,15 +11,14 @@ class NavBar extends Component {
         currentUser: sessionStorage.getItem('userId'),
         firstName: ""
     }
-
+// Making a fetch request against sessionStorage to find relevant user and storing first name in state
     componentDidMount() {
-        fetch(`http://127.0.0.1:8088/users/${this.props.match.params.userId}`)
+        fetch(`http://127.0.0.1:8088/users/${this.state.currentUser}`)
         .then(r => r.json())
         .then(response => {
-            console.log(response)
-            // this.setState({
-            //     firstName: response
-            // })
+            this.setState({
+                firstName: response.name.first
+            })
         })
     }
 
@@ -27,13 +26,13 @@ class NavBar extends Component {
     render() {
         return (
         <Navbar>
-            <NavbarItem href="/">Home</NavbarItem>
+            <NavbarItem href={"/home/" + this.state.currentUser}>Home</NavbarItem>
             <Control>
                 <Input type="text" placeholder="Search"></Input>
             </Control>
                 <Button isColor="info" isOutlined>S</Button>
             <NavbarItem href="/">Notifications</NavbarItem>
-            <NavbarItem href={"/profile/" + this.state.currentUser}>Jacob</NavbarItem>
+            <NavbarItem href={"/profile/" + this.state.currentUser}>{this.state.firstName}</NavbarItem>
             <NavbarItem href={"/"}>Logout</NavbarItem>
         </Navbar>
         )

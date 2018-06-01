@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Posts from '../newsfeed/posts';
+import Posts from '../newsfeed/Posts';
 import { Box, Title} from 'bloomer'
 
 
