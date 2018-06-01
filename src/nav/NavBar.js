@@ -13,8 +13,20 @@ class NavBar extends Component {
         // Storing session storage as an object in state named currentUser
         this.state = {
             currentUser: sessionStorage.getItem('userId'),
-            isActive: false
+            isActive: false,
+            firstName: ""
         }
+    }
+
+// Making a fetch request against sessionStorage to find relevant user and storing first name in state
+    componentDidMount() {
+        fetch(`http://127.0.0.1:8088/users/${this.state.currentUser}`)
+        .then(r => r.json())
+        .then(response => {
+            this.setState({
+                firstName: response.name.first
+            })
+        })
     }
 
     // event handler for clicking nav drop down burger
@@ -40,7 +52,7 @@ class NavBar extends Component {
                         <Button isColor="info" isOutlined>S</Button>
                     </Control>
                     <NavbarItem href="/">Notifications</NavbarItem>
-                    <NavbarItem href={"/profile/" + this.state.currentUser}>Jacob</NavbarItem>
+                    <NavbarItem href={"/profile/" + this.state.currentUser}>{this.state.firstName}</NavbarItem>
                     <NavbarItem href={"/"}>Logout</NavbarItem>
                 </NavbarMenu>
             </Navbar>
