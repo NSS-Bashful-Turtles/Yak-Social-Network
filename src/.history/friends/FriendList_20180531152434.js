@@ -34,7 +34,6 @@ class FriendList extends Component {
     render() {
         return (
             <div>
-                <strong>Friends List</strong>
                     {this.state.friends.map(p => (<Friend first={p.name.first} last= {p.name.last}/>))}
             </div>
         )
