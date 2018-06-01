@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import InitialLoad from '../InitialLoad'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class Registration extends Component {
     
@@ -76,8 +79,17 @@ class Registration extends Component {
                 })
                 .then(r => r.json())
                 .then(user => {
-                    sessionStorage.setItem("userId", user.id)
+                    const userSet = JSON.stringify(user.id)
+                    sessionStorage.setItem("userId", userSet)
                     localStorage.clear()
+
+                    ReactDOM.render(
+                        <Router>
+                            <div>
+                                <InitialLoad />
+                            </div>
+                        </Router>
+                    , document.getElementById('root'));
                 })
             }
         })

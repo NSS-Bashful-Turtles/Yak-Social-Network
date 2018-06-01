@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import NavBar from '.././nav/NavBar'
+import ProfileView from '.././profile/ProfileView'
+import Dashboard from '.././dashboard/Dashboard';
+// import { Route, Link, Switch } from "react-router-dom";
+import ReactDOM from 'react-dom';
+import InitialLoad from '../InitialLoad'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class Login extends Component {
     state = {
         username: "",
         password: "",
-        errorMessage: "Username or Password does not match"
+        errorMessage: "Username or Password does not match",
+        loggedIn: false
     }
 
     handleSubmit = function (evt) {
@@ -32,6 +40,14 @@ class Login extends Component {
                         localStorage.clear()
                     }
                     sessionStorage.setItem("userId", user.id)
+
+                    ReactDOM.render(
+                        <Router>
+                            <div>
+                                <InitialLoad />
+                            </div>
+                        </Router>
+                    , document.getElementById('root'));
                 }
             })
 
@@ -44,29 +60,39 @@ class Login extends Component {
     }.bind(this)
 
     render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text"
-                        id='username'
-                        value={this.state.username}
-                        onChange={this.handleFormFieldChange}
-                        // className="form-control"
-                        placeholder='username' />
-                    <input type="text"
-                        id='password'
-                        value={this.state.password}
-                        onChange={this.handleFormFieldChange}
-                        // className="form-control"
-                        placeholder='password' />
-                    <input type="checkbox"
-                        id="checkbox"
-                        value="true"/>
-                    <label for="checkbox">Remember Me?</label>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        )
+        // if(this.state.loggedIn === false){
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text"
+                            id='username'
+                            value={this.state.username}
+                            onChange={this.handleFormFieldChange}
+                            // className="form-control"
+                            placeholder='username' />
+                        <input type="text"
+                            id='password'
+                            value={this.state.password}
+                            onChange={this.handleFormFieldChange}
+                            // className="form-control"
+                            placeholder='password' />
+                        <input type="checkbox"
+                            id="checkbox"
+                            value="true"/>
+                        <label for="checkbox">Remember Me?</label>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            )
+        // } else{
+        //     return(
+        //         <div>
+        //             <NavBar />
+        //             <Route path="/profile/:userId" component={ProfileView} />
+        //             <Route path="/home/:userId" component={Dashboard} />
+        //         </div>
+        //     )
+        // }
     }
 }
 
