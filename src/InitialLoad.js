@@ -4,6 +4,7 @@ import NavBar from './nav/NavBar'
 import ProfileView from './profile/ProfileView'
 import Dashboard from './dashboard/Dashboard';
 import { Route, Link } from "react-router-dom";
+import Search from "./search/Search";
 
 class InitialLoad extends Component {
     
@@ -47,6 +48,7 @@ class InitialLoad extends Component {
                     <NavBar />
                     <Route path="/profile/:userId" component={ProfileView} />
                     <Route path="/home/:userId" component={Dashboard} />
+                    <Route path="/search/:searchType/:searchValue" component={Search} />
                 </div>
             )
         }
