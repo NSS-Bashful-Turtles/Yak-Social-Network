@@ -35,6 +35,7 @@ class NavBar extends Component {
         this.setState({
             isActive: (!this.state.isActive)
         })
+        document.querySelector("#input__search").value = ""
     }.bind(this)
 
     //on click of search button
@@ -59,7 +60,7 @@ class NavBar extends Component {
                 <NavbarMenu isActive={this.state.isActive}>
                     <NavbarItem href={"/home/" + this.state.currentUser} onClick={this.onClickNav}>Home</NavbarItem>
                     <Input id="input__search" type="text" placeholder="Search" ></Input>
-                    <Button isColor="info" onClick={this.onClickSearch} isOutlined>S</Button>
+                    <Button isColor="info" onClick={this.onClickSearch} isOutlined><i class="material-icons">search</i></Button>
                     <NavbarItem href="/" onClick={this.onClickNav}>Notifications</NavbarItem>
                     <NavbarItem href={"/profile/" + this.state.currentUser} onClick={this.onClickNav}>{this.state.firstName}</NavbarItem>
                     <NavbarItem href={"/"} onClick={this.onClickNav}>Logout</NavbarItem>
