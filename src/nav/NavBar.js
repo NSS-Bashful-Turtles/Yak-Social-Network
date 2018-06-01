@@ -76,9 +76,9 @@ class NavBar extends Component {
                     <NavbarItem hasDropdown isHoverable>
                         <NavbarLink>{this.state.searchType}</NavbarLink>
                         <NavbarDropdown>
-                            <NavbarItem onClick={this.handleSearchTypeChange}>users</NavbarItem>
-                            <NavbarItem onClick={this.handleSearchTypeChange}>posts</NavbarItem>
-                            <NavbarItem onClick={this.handleSearchTypeChange}>events</NavbarItem>
+                            <NavbarItem onClick={this.handleSearchTypeChange}>People</NavbarItem>
+                            <NavbarItem onClick={this.handleSearchTypeChange}>Posts</NavbarItem>
+                            <NavbarItem disabled="true">Events</NavbarItem>
                         </NavbarDropdown>
                     </NavbarItem>
                     <Input id="input__search" type="text" placeholder="Search" onChange={this.handleSearchKeyPress}></Input>

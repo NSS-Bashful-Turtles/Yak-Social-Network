@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Title, Container } from 'bloomer';
-import PeopleResult from './PeopleResult'
+import PeopleResults from './PeopleResults'
+import PostsResults from './PostsResults';
 
 
 class Search extends Component {
@@ -15,18 +16,7 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        if (this.props.match.params.searchType !== "Search for") {
-            fetch(`http://localhost:8088/${this.props.match.params.searchType}?q=${this.props.match.params.searchValue}`)
-                .then(r => r.json())
-
-                .then(response => {
-                    console.log(response)
-                    this.setState({
-                        searchResults: response
-                    })
-                })
-        }
-        else {
+        if (this.props.match.params.searchType === "Search for") {
             this.setState({
                 searchCompleted: false
             })
@@ -41,12 +31,19 @@ class Search extends Component {
                 {this.state.searchCompleted === false &&
                     <Title>Please select a search category</Title>
                 }
-                {this.state.searchResults.map(user => (
-                    <PeopleResult
-                        name={user.name}
-                        key={user.id}
+
+                {this.props.match.params.searchType === "People" &&
+                    <PeopleResults
+                        searchString={this.props.match.params.searchValue}
                     />
-                ))}
+                }
+
+                {this.props.match.params.searchType === "Posts" &&
+                    <PostsResults 
+                        searchString={this.props.match.params.searchValue}
+                    />
+                }
+
             </Container>
         )
     }
