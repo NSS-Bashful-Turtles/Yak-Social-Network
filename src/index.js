@@ -32,6 +32,7 @@ ReactDOM.render(
             <Route path="/home/:userId" component={Dashboard} />
         </div>
     </Router>
+
 //   ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
   // ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
 
