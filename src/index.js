@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import ProfileView from './profile/ProfileView'
-import NewsFeed from './newsfeed/Newsfeed'
+import NewsFeed from './newsfeed/newsfeed'
 
 
 import NavBar from './nav/NavBar';
