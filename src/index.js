@@ -16,6 +16,7 @@ import FriendList from './friends/FriendList'
 import Dashboard from './dashboard/Dashboard';
 import Login from './LoginRegistration/login'
 import './index.css';
+import Search from "./search/Search";
 
 
 
@@ -24,18 +25,15 @@ import './index.css';
 // Line 23: Route was added to dynamically added any profile page upon login
 
 
-// ReactDOM.render(
-//     <Router>
-//         <div>
-//             <NavBar />
-//             <Route path="/profile/:userId" component={ProfileView} />
-//             <Route path="/home/:userId" component={Dashboard} />
-//         </div>
-//     </Router>
 
-//   // ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
-
-
-//     , document.getElementById('root'));
-    ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
+ReactDOM.render(
+    <Router>
+        <div>
+            <NavBar />
+            <Route path="/profile/:userId" component={ProfileView} />
+            <Route path="/home/:userId" component={Dashboard} />
+            <Route path="/search/:searchType/:searchValue" component={Search} />
+        </div>
+    </Router>
+     , document.getElementById('root'));
 registerServiceWorker();
