@@ -24,18 +24,18 @@ import './index.css';
 // Line 23: Route was added to dynamically added any profile page upon login
 
 
-ReactDOM.render(
-    <Router>
-        <div>
-            <NavBar />
-            <Route path="/profile/:userId" component={ProfileView} />
-            <Route path="/home/:userId" component={Dashboard} />
-        </div>
-    </Router>
+// ReactDOM.render(
+//     <Router>
+//         <div>
+//             <NavBar />
+//             <Route path="/profile/:userId" component={ProfileView} />
+//             <Route path="/home/:userId" component={Dashboard} />
+//         </div>
+//     </Router>
 
-//   ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
-  // ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
+//   // ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
 
 
-    , document.getElementById('root'));
+//     , document.getElementById('root'));
+    ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
 registerServiceWorker();

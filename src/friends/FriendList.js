@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Friend from "./friend"
 
 class FriendList extends Component {
-
     state = { friends: [] }
+    uniqueKey = 1;
+
 
     componentDidMount() {
         fetch(`http://localhost:8088/friendships?user1Id=1&?user2id=1`)
@@ -34,7 +35,7 @@ class FriendList extends Component {
     render() {
         return (
             <div>
-                    {this.state.friends.map(p => (<Friend first={p.name.first} last= {p.name.last}/>))}
+                    {this.state.friends.map(p => (<Friend first={p.name.first} last= {p.name.last} key={this.uniqueKey++}/>))}
             </div>
         )
     }
