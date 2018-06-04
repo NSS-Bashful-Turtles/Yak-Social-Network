@@ -35,5 +35,5 @@ ReactDOM.render(
             <Route path="/search/:searchType/:searchValue" component={Search} />
         </div>
     </Router>
-     , document.getElementById('root'));
+    , document.getElementById('root'));
 registerServiceWorker();

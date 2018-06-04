@@ -51,6 +51,7 @@ class Search extends Component {
     render() {
         return (
             <Container>
+                <Title>Search Results</Title>
                 {this.runSearch()}
             </Container>
         )
