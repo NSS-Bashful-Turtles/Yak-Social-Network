@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import InitialLoad from '../InitialLoad'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class Registration extends Component {
     
@@ -85,13 +82,6 @@ class Registration extends Component {
 
                     this.props.setActiveUser(user.id)
                     this.props.setView("home")
-                    // ReactDOM.render(
-                    //     <Router>
-                    //         <div>
-                    //             <InitialLoad />
-                    //         </div>
-                    //     </Router>
-                    // , document.getElementById('root'));
                 })
             }
         })
@@ -104,38 +94,38 @@ class Registration extends Component {
                     id='firstName'
                     value={this.state.firstName}
                     onChange={this.handleFormFieldChange}
-                    // className="form-control"
                     placeholder='first name' />
+                    
                 <input type="text"
                     id='lastName'
                     value={this.state.lastName}
                     onChange={this.handleFormFieldChange}
-                    // className="form-control"
                     placeholder='last name' />
+                    
                 <input type="text"
                     id='location'
                     value={this.state.location}
                     onChange={this.handleFormFieldChange}
-                    // className="form-control"
                     placeholder='location' />
+                    
                 <input type="text"
                     id='email'
                     value={this.state.email}
                     onChange={this.handleFormFieldChange}
-                    // className="form-control"
                     placeholder='email' />
+                    
                 <input type="text"
                     id='username'
                     value={this.state.username}
                     onChange={this.handleFormFieldChange}
-                    // className="form-control"
                     placeholder='username' />
+                    
                 <input type="text"
                     id='password'
                     value={this.state.password}
                     onChange={this.handleFormFieldChange}
-                    // className="form-control"
                     placeholder='password' />
+                    
                 <button type="submit">Submit</button>
             </form>
         )
