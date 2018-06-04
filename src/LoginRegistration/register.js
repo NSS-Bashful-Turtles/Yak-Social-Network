@@ -83,13 +83,15 @@ class Registration extends Component {
                     sessionStorage.setItem("userId", userSet)
                     localStorage.clear()
 
-                    ReactDOM.render(
-                        <Router>
-                            <div>
-                                <InitialLoad />
-                            </div>
-                        </Router>
-                    , document.getElementById('root'));
+                    this.props.setActiveUser(user.id)
+                    this.props.setView("home")
+                    // ReactDOM.render(
+                    //     <Router>
+                    //         <div>
+                    //             <InitialLoad />
+                    //         </div>
+                    //     </Router>
+                    // , document.getElementById('root'));
                 })
             }
         })

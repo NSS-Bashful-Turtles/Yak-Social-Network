@@ -25,7 +25,7 @@ import InitialLoad from './InitialLoad'
 ReactDOM.render(
     <Router>
         <div>
-            <InitialLoad />
+            <App />
         </div>
     </Router>
 

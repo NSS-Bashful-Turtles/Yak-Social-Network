@@ -12,8 +12,17 @@ class Login extends Component {
         username: "",
         password: "",
         errorMessage: "Username or Password does not match",
-        loggedIn: false
     }
+
+    // handleLogin = function() {
+    //         return (
+    //             <Router>
+    //                 <div>
+    //                     <InitialLoad />
+    //                 </div>
+    //             </Router>
+    //         )
+    // }.bind(this)
 
     handleSubmit = function (evt) {
         evt.preventDefault()
@@ -40,24 +49,30 @@ class Login extends Component {
                         localStorage.clear()
                     }
                     sessionStorage.setItem("userId", user.id)
+                    console.log(user.id)
+                    console.log(this.props)
+                    this.props.setActiveUser(user.id)
+                    this.props.setView("home")
 
-                    ReactDOM.render(
-                        <Router>
-                            <div>
-                                <InitialLoad />
-                            </div>
-                        </Router>
-                    , document.getElementById('root'));
+                    // this.handleLogin()
+
+                    // ReactDOM.render(
+                    //     <Router>
+                    //         <div>
+                    //             <InitialLoad />
+                    //         </div>
+                    //     </Router>
+                    // , document.getElementById('root'));
                 }
             })
 
-    }.bind(this)
+    }.bind(this);
 
     handleFormFieldChange = function (evt) {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
-    }.bind(this)
+    }.bind(this);
 
     render() {
         // if(this.state.loggedIn === false){
@@ -80,7 +95,7 @@ class Login extends Component {
                             id="checkbox"
                             value="true"/>
                         <label for="checkbox">Remember Me?</label>
-                        <button type="submit">Submit</button>
+                        <button type="submit" onClick={this.handleLogin}>Submit</button>
                     </form>
                 </div>
             )
