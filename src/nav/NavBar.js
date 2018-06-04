@@ -45,8 +45,8 @@ class NavBar extends Component {
         //fire function to close navbar
         this.onClickNav()
 
-        /* 
-            add code here 
+        /*
+            add code here
             to fire search functionality
         */
     }.bind(this)
@@ -72,7 +72,7 @@ class NavBar extends Component {
                     <NavbarBurger isActive={this.state.isActive} onClick={this.onClickNav} />
                 </NavbarBrand>
                 <NavbarMenu isActive={this.state.isActive}>
-                    <NavbarItem href={"/home/" + this.state.currentUser} onClick={this.onClickNav}>Home</NavbarItem>
+                    <NavbarItem id="nav__home" href={"/home/" + this.state.currentUser} onClick={this.onClickNav}>Home</NavbarItem>
                     <NavbarItem hasDropdown isHoverable>
                         <NavbarLink>{this.state.searchType}</NavbarLink>
                         <NavbarDropdown>
@@ -82,10 +82,10 @@ class NavBar extends Component {
                         </NavbarDropdown>
                     </NavbarItem>
                     <Input id="input__search" type="text" placeholder="Search" onChange={this.handleSearchKeyPress}></Input>
-                    <NavbarItem href={"/search/" + this.state.searchType + "/" + this.state.searchValue}><Button isColor="info" onClick={this.onClickSearch} isOutlined><i className="material-icons">search</i></Button></NavbarItem>
-                    <NavbarItem href="/" onClick={this.onClickNav}>Notifications</NavbarItem>
-                    <NavbarItem href={"/profile/" + this.state.currentUser} onClick={this.onClickNav}>{this.state.firstName}</NavbarItem>
-                    <NavbarItem href={"/"} onClick={this.onClickNav}>Logout</NavbarItem>
+                    <NavbarItem id="nav__search" href={"/search/" + this.state.searchType + "/" + this.state.searchValue}><Button isColor="info" onClick={this.onClickSearch} isOutlined><i className="material-icons">search</i></Button></NavbarItem>
+                    <NavbarItem id="nav__notifications" href="/" onClick={this.onClickNav}>Notifications</NavbarItem>
+                    <NavbarItem id="nav__profile" href={"/profile/" + this.state.currentUser} onClick={this.onClickNav}>{this.state.firstName}</NavbarItem>
+                    <NavbarItem id="nav__logout" href={"/"} onClick={this.onClickNav}>Logout</NavbarItem>
                 </NavbarMenu>
             </Navbar>
         )
