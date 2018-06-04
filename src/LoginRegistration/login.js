@@ -62,8 +62,8 @@ class Login extends Component {
                         id="checkbox"
                         value="true" />
 
-                    <label for="checkbox">Remember Me?</label>
-                    
+                    <label htmlFor="checkbox">Remember Me?</label>
+
                     <button type="submit" onClick={this.handleLogin}>Submit</button>
                 </form>
             </div>
