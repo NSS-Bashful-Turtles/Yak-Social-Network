@@ -30,33 +30,29 @@ class Search extends Component {
         }
     }
 
+    runSearch() {
+        if (this.props.match.params.searchType === "Search for") {
+            return <Title>Please select a search category</Title>
+        } else {
+            switch (this.props.match.params.searchType) {
+                case "People":
+                    return <PeopleResults searchString={this.props.match.params.searchValue} />
+                case "Posts":
+                    return <PostsResults searchString={this.props.match.params.searchValue} />
+                case "Events":
+                    return <EventsResults searchString={this.props.match.params.searchValue} />
+                default:
+                    return <Title>There was an error, you searh could not be completed, it was probably our fault </Title>
+            }
+        }
+    }
+
 
     render() {
         return (
             <Container>
                 <Title>Search Results</Title>
-                {this.state.searchCompleted === false &&
-                    <Title>Please select a search category</Title>
-                }
-
-                {this.props.match.params.searchType === "People" &&
-                    <PeopleResults
-                        searchString={this.props.match.params.searchValue}
-                    />
-                }
-
-                {this.props.match.params.searchType === "Posts" &&
-                    <PostsResults
-                        searchString={this.props.match.params.searchValue}
-                    />
-                }
-
-                {this.props.match.params.searchType === "Events" &&
-                    <EventsResults 
-                        searchString={this.props.match.params.searchValue}
-                    />
-            }
-
+                {this.runSearch()}
             </Container>
         )
     }
