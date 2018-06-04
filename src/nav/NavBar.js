@@ -8,35 +8,38 @@ import './NavBar.css'
 
 class NavBar extends Component {
 
-        // Storing session storage as an object in state named currentUser
-        state = {
-            isActive: false,
-            firstName: "",
-            image: "",
-            searchValue: "",
-            searchType: "Search for"
-        }
+    // Storing session storage as an object in state named currentUser
+    state = {
+        isActive: false,
+        firstName: "",
+        image: "",
+        searchValue: "",
+        searchType: "Search for"
+    }
 
     // Making a fetch request against sessionStorage to find relevant user and storing first name in state
     componentDidMount() {
         const currentUser = sessionStorage.getItem('userId')
-        fetch(`http://127.0.0.1:8088/users/${currentUser}`)
-            .then(r => r.json())
-            .then(response => {
-                this.setState({
-                    firstName: response.name.first,
-                    image: response.image
+        if (currentUser !== null) {
+            fetch(`http://127.0.0.1:8088/users/${currentUser}`)
+                .then(r => r.json())
+                .then(response => {
+                    this.setState({
+                        firstName: response.name.first,
+                        image: response.image
+                    })
                 })
-            })
+        }
     }
 
     // event handler for clicking nav drop down burger
     // sets isActive property in state to the opposite of what it currently is
-    onClickNav = function () {
+    onClickNav = function (e) {
         this.setState({
             isActive: (!this.state.isActive)
         })
         document.querySelector("#input__search").value = ""
+        this.props.setView(e)
     }.bind(this)
 
     //on click of search button
@@ -70,7 +73,7 @@ class NavBar extends Component {
                     <NavbarBurger isActive={this.state.isActive} onClick={this.onClickNav} />
                 </NavbarBrand>
                 <NavbarMenu isActive={this.state.isActive}>
-                    <NavbarItem id="nav__home" href={"/home/" + this.state.currentUser} onClick={this.onClickNav}>Home</NavbarItem>
+                    <NavbarItem id="nav__home" onClick={this.onClickNav}>Home</NavbarItem>
                     <NavbarItem hasDropdown isHoverable>
                         <NavbarLink>{this.state.searchType}</NavbarLink>
                         <NavbarDropdown>
@@ -80,10 +83,10 @@ class NavBar extends Component {
                         </NavbarDropdown>
                     </NavbarItem>
                     <Input id="input__search" type="text" placeholder="Search" onChange={this.handleSearchKeyPress}></Input>
-                    <NavbarItem id="nav__search" href={"/search/" + this.state.searchType + "/" + this.state.searchValue}><Button isColor="info" onClick={this.onClickSearch} isOutlined><i className="material-icons">search</i></Button></NavbarItem>
-                    <NavbarItem id="nav__notifications" href="/" onClick={this.onClickNav}>Notifications</NavbarItem>
-                    <NavbarItem id="nav__profile" href={"/profile/" + this.state.currentUser} onClick={this.onClickNav}><img class="profile__image" src={this.state.image}></img>{this.state.firstName}</NavbarItem>
-                    <NavbarItem id="nav__logout" href={"/"} onClick={this.onClickNav}>Logout</NavbarItem>
+                    <NavbarItem id="nav__search" ><Button isColor="info" onClick={this.onClickSearch} isOutlined><i className="material-icons">search</i></Button></NavbarItem>
+                    <NavbarItem id="nav__notifications" className="nav__pointer" onClick={this.onClickNav}>Notifications</NavbarItem>
+                    <NavbarItem id="nav__profile" className="nav__pointer" onClick={this.onClickNav}>Profile</NavbarItem>
+                    <NavbarItem id="nav__logout" className="nav__pointer" onClick={this.onClickNav}>Logout</NavbarItem>
                 </NavbarMenu>
             </Navbar>
         )

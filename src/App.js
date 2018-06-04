@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import LoginPage from './LoginRegistration/loginRegistrationPage'
 import Dashboard from './dashboard/Dashboard'
+import NavBar from './nav/NavBar'
+import SearchResults from './search/Search'
+import Profile from './profile/ProfileView'
 
 class App extends Component {
   state = {
     currentView: "",
-    searchTerms: "",
+    searchValue: "",
+    searchType: "",
     activeUser: ""
   }
 
@@ -45,16 +49,24 @@ class App extends Component {
 
 }.bind(this)
 
+componentDidMount() {
+  this.setState({
+    activeUser: sessionStorage.getItem("userId")
+  })
+}
+
   showView = () => {
-    // debugger
+
     if (sessionStorage.getItem("userId") === null) {
         return <LoginPage setView={this.setView} setActiveUser={this.setActiveUser} />
     } else {
         switch (this.state.currentView) {
             // case "logout":
             //     return <LoginPage showView={this.showView} setActiveUser={this.setActiveUser} />
-            // case "results":
-            //     return <SearchResults terms={this.state.searchTerms} />
+            case "search":
+                return <SearchResults searchValue={this.state.searchValue} searchType={this.state.searchType} />
+            case "profile":
+                return <Profile userId={this.state.activeUser}/>
             case "home":
             default:
                 return <Dashboard activeUser={this.state.activeUser} />
@@ -65,6 +77,7 @@ class App extends Component {
   render() {
     return(
       <div>
+        <NavBar setView={this.setView}/>
         {this.showView()}
       </div>
     )
