@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Container, Section, Title } from 'bloomer'
 import NewsFeed from '../newsfeed/newsfeed';
 import FriendList from '../friends/FriendList'
+import AddList from '../ads/AddList';
 
 class Dashboard extends Component {
 
@@ -12,6 +13,7 @@ class Dashboard extends Component {
                 <Title>Dashboard</Title>
                 <NewsFeed />
                 <FriendList />
+                <AddList />
             </Container>
         )
     }
