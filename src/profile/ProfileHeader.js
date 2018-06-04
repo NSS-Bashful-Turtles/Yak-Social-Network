@@ -8,7 +8,7 @@ class ProfileHeader extends Component {
             <Hero>
                 <HeroBody>
                     <Container>
-                        <img className="is-pulled-left" src={this.props.image} />
+                        <img className="is-pulled-left" src={this.props.image} alt="" />
                         <Title>Name: {this.props.first} {this.props.last}</Title>
                         <p>Location: {this.props.location}</p>
                     </Container>

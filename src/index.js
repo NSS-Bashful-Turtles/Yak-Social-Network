@@ -25,6 +25,7 @@ import Search from "./search/Search";
 // Line 23: Route was added to dynamically added any profile page upon login
 
 
+
 ReactDOM.render(
     <Router>
         <div>
@@ -34,10 +35,5 @@ ReactDOM.render(
             <Route path="/search/:searchType/:searchValue" component={Search} />
         </div>
     </Router>
-
-//   ReactDOM.render(<NewsFeed/>, document.getElementById('root'));
-  // ReactDOM.render(<ProfileView userId="1"/>, document.getElementById('root'));
-
-
-    , document.getElementById('root'));
+     , document.getElementById('root'));
 registerServiceWorker();
