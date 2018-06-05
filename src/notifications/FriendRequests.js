@@ -9,7 +9,7 @@ class FriendRequests extends Component {
         return (
             <Content>
                 {this.props.friendRequests.map(request => (
-                    <Box>
+                    <Box key={request.id}>
                         <p>{request.user.name.first} has sent you a friend request</p>
                         <Button disabled="true">Accept</Button>
                         <Button disabled="true">Deny</Button>

@@ -9,7 +9,7 @@ class Likes extends Component {
         return (
             <Content>
                 {this.props.likes.map(like => (
-                    <Box>
+                    <Box key={like.id}>
                         <i id={"likeNotifications__"+like.id} className="material-icons pointer">highlight_off</i>
                         <p>{like.user.name.first} liked:</p>
                         <small>{like.post.content}</small>

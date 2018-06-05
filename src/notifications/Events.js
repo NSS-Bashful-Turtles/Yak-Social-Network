@@ -9,7 +9,7 @@ class Events extends Component {
         return (
             <Content>
                 {this.props.events.map(event => (
-                    <Box>
+                    <Box key={event.id}>
                         <i id={"eventNotifications__"+event.id} className="material-icons pointer">highlight_off</i>
                         <p>{event.user.name.first} created {event.event.name}</p>
                     </Box>
