@@ -41,6 +41,8 @@ class App extends Component {
     // If user clicked logout in nav, empty local storage and update activeUser state
     if (view === "logout") {
         this.setActiveUser(null)
+        localStorage.clear()
+        sessionStorage.clear()
     }
 
     // Update state to correct view will be rendered
@@ -48,6 +50,14 @@ class App extends Component {
         currentView: view
     })
 
+}.bind(this)
+
+deleteActiveUser = function() {
+  localStorage.clear()
+  sessionStorage.clear()
+  this.setState({
+    activeUser: ""
+  })
 }.bind(this)
 
 componentDidMount() {
@@ -62,8 +72,8 @@ componentDidMount() {
         return <LoginPage setView={this.setView} setActiveUser={this.setActiveUser} />
     } else {
         switch (this.state.currentView) {
-            // case "logout":
-            //     return <LoginPage showView={this.showView} setActiveUser={this.setActiveUser} />
+            case "logout":
+                return <LoginPage setView={this.setView} setActiveUser={this.setActiveUser} />
             case "search":
                 return <SearchResults searchValue={this.state.searchValue} searchType={this.state.searchType} />
             case "profile":
@@ -91,7 +101,7 @@ componentDidMount() {
   render() {
     return(
       <div>
-        <NavBar setView={this.setView} setSearchType={this.setSearchType} setSearchValue={this.setSearchValue} searchDisplay={this.state.searchDisplay}/>
+        <NavBar setView={this.setView} setSearchType={this.setSearchType} setSearchValue={this.setSearchValue} searchDisplay={this.state.searchDisplay} deleteActiveUser={this.deleteActiveUser}/>
         {this.showView()}
       </div>
     )
