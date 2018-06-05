@@ -3,6 +3,7 @@ import { Title, Container } from 'bloomer';
 import PeopleResults from './PeopleResults'
 import PostsResults from './PostsResults';
 import EventsResults from './EventsResults';
+import AllResults from './AllResults';
 
 
 /* 
@@ -22,25 +23,20 @@ class Search extends Component {
     }
 
     // checks to make sure user selected a search parameter
-    componentDidMount() {
-        if (this.props.match.params.searchType === "Search for") {
-            this.setState({
-                searchCompleted: false
-            })
-        }
-    }
 
     runSearch() {
-        if (this.props.match.params.searchType === "Search for") {
+        if (this.props.searchType === "Search for") {
             return <Title>Please select a search category</Title>
         } else {
-            switch (this.props.match.params.searchType) {
-                case "People":
-                    return <PeopleResults searchString={this.props.match.params.searchValue} />
-                case "Posts":
-                    return <PostsResults searchString={this.props.match.params.searchValue} />
-                case "Events":
-                    return <EventsResults searchString={this.props.match.params.searchValue} />
+            switch (this.props.searchType) {
+                case "all":
+                    return <AllResults searchString={this.props.searchValue} />
+                case "people":
+                    return <PeopleResults searchString={this.props.searchValue} />
+                case "posts":
+                    return <PostsResults searchString={this.props.searchValue} />
+                case "events":
+                    return <EventsResults searchString={this.props.searchValue} />
                 default:
                     return <Title>There was an error, you searh could not be completed, it was probably our fault </Title>
             }

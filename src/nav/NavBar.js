@@ -14,7 +14,7 @@ class NavBar extends Component {
         firstName: "",
         image: "",
         searchValue: "",
-        searchType: "Search for"
+        searchType: "All"
     }
 
     // Making a fetch request against sessionStorage to find relevant user and storing first name in state
@@ -43,9 +43,9 @@ class NavBar extends Component {
     }.bind(this)
 
     //on click of search button
-    onClickSearch = function () {
+    onClickSearch = function (e) {
         //fire function to close navbar
-        this.onClickNav()
+        this.onClickNav(e)
 
         /*
             add code here
@@ -75,15 +75,16 @@ class NavBar extends Component {
                 <NavbarMenu isActive={this.state.isActive}>
                     <NavbarItem id="nav__home" onClick={this.onClickNav}>Home</NavbarItem>
                     <NavbarItem hasDropdown isHoverable>
-                        <NavbarLink>{this.state.searchType}</NavbarLink>
+                        <NavbarLink>Search For: {this.props.searchDisplay}</NavbarLink>
                         <NavbarDropdown>
-                            <NavbarItem className="nav__pointer" onClick={this.handleSearchTypeChange}>People</NavbarItem>
-                            <NavbarItem className="nav__pointer" onClick={this.handleSearchTypeChange}>Posts</NavbarItem>
-                            <NavbarItem className="nav__pointer" onClick={this.handleSearchTypeChange}>Events</NavbarItem>
+                            <NavbarItem className="nav__pointer" id="all" onClick={this.props.setSearchType}>All</NavbarItem>
+                            <NavbarItem className="nav__pointer" id="people" onClick={this.props.setSearchType}>People</NavbarItem>
+                            <NavbarItem className="nav__pointer" id="posts" onClick={this.props.setSearchType}>Posts</NavbarItem>
+                            <NavbarItem className="nav__pointer" id="events" onClick={this.props.setSearchType}>Events</NavbarItem>
                         </NavbarDropdown>
                     </NavbarItem>
-                    <Input id="input__search" type="text" placeholder="Search" onChange={this.handleSearchKeyPress}></Input>
-                    <NavbarItem id="nav__search" ><Button isColor="info" onClick={this.onClickSearch} isOutlined><i className="material-icons">search</i></Button></NavbarItem>
+                    <Input id="input__search" type="text" placeholder="Search" onChange={this.props.setSearchValue}></Input>
+                    <NavbarItem id="nav__search" className="nav__pointer" onClick={this.onClickSearch}>Search</NavbarItem>
                     <NavbarItem id="nav__notifications" className="nav__pointer" onClick={this.onClickNav}>Notifications</NavbarItem>
                     <NavbarItem id="nav__profile" className="nav__pointer" onClick={this.onClickNav}>Profile</NavbarItem>
                     <NavbarItem id="nav__logout" className="nav__pointer" onClick={this.onClickNav}>Logout</NavbarItem>

@@ -10,8 +10,9 @@ class App extends Component {
   state = {
     currentView: "",
     searchValue: "",
-    searchType: "",
-    activeUser: ""
+    searchType: "all",
+    activeUser: "",
+    searchDisplay: "All"
   }
 
   setActiveUser = function (val) {
@@ -74,10 +75,23 @@ componentDidMount() {
     }
 }
 
+  setSearchType = function (e) {
+    this.setState({
+      searchType: e.target.id,
+      searchDisplay: e.target.textContent
+    })
+  }.bind(this)
+
+  setSearchValue = function (e) {
+    this.setState({
+      searchValue: e.target.value
+    })
+  }.bind(this)
+
   render() {
     return(
       <div>
-        <NavBar setView={this.setView}/>
+        <NavBar setView={this.setView} setSearchType={this.setSearchType} setSearchValue={this.setSearchValue} searchDisplay={this.state.searchDisplay}/>
         {this.showView()}
       </div>
     )
