@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Posts from "./Posts"
 import Publish from "./Publish"
 import "./newsfeed.css"
+import Likes from './Likes';
 
 class NewsFeed extends Component {
     // set default data for the component
@@ -17,6 +18,7 @@ class NewsFeed extends Component {
         fetch(`http://localhost:8088/posts?private=false&_expand=user`)
         .then(r => r.json())
         .then(response => {
+            console.log(response);
             this.setState({
                 posts: response
             })
@@ -50,7 +52,8 @@ class NewsFeed extends Component {
                 </div>
                 {
                 this.state.posts.map(element => (
-                    <Posts image={element.image}
+                    [<Posts
+                    image={element.image}
                     content={element.content}
                     key={element.id}
                     firstName={element.user.name.first}
@@ -58,7 +61,8 @@ class NewsFeed extends Component {
                     userImage={element.user.image}
                     userName={element.user.username}
                     timeStamp={element.timeStamp}
-                    />
+                    />,
+                    <Likes id={element.id} />]
                 ))
                 }
             </div>

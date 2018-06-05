@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Content,Icon,Delete, Media, MediaLeft, MediaRight, MediaContent, Level, LevelItem, LevelLeft,LevelRight } from 'bloomer';
+import { Image, Content,Delete, Media, MediaLeft, MediaRight, MediaContent} from 'bloomer';
 import "./newsfeed.css"
 
 class Posts extends Component {
@@ -17,7 +17,7 @@ class Posts extends Component {
                                 <br />
                             </p>
                         </Content>
-                        <img className="post-image" src={this.props.image} />
+                        <img className="post-image" src={this.props.image} alt=""/>
                         <Content>
                             <p>
                                 {this.props.content}
