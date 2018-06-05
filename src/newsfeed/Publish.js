@@ -34,8 +34,8 @@ class Publish extends Component {
             timeStamp: new Date(),
             content: this.state.content,
             image: "",
-            receiverId: "null",
-            private: "false"
+            receiverId: null,
+            private: false
         }
         fetch("http://localhost:8088/posts",{
         method: "POST",
@@ -56,7 +56,7 @@ class Publish extends Component {
                 content: this.state.content,
                 image: "",
                 receiverId: this.state.receiverId,
-                private: "true"
+                private: true
             }
             fetch("http://localhost:8088/posts",{
             method: "POST",

@@ -9,7 +9,6 @@ class NewsFeed extends Component {
     // if xhr request does not complete the default information will let you know
     constructor(props) {
         super(props)
-
         this.state = {
             posts: []
         }
