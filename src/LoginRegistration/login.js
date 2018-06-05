@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Field, FieldBody, Checkbox, Control, Input, Button } from 'bloomer';
+import 'bulma/css/bulma.min.css'
 
 class Login extends Component {
     state = {
@@ -46,25 +48,28 @@ class Login extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text"
-                        id='username'
-                        value={this.state.username}
-                        onChange={this.handleFormFieldChange}
-                        placeholder='username' />
+                <Field isHorizontal>
+                    <FieldBody>
 
-                    <input type="text"
-                        id='password'
-                        value={this.state.password}
-                        onChange={this.handleFormFieldChange}
-                        placeholder='password' />
+                        <Input type="text"
+                            id='username'
+                            value={this.state.username}
+                            onChange={this.handleFormFieldChange}
+                            placeholder='username'></Input>
 
-                    <input type="checkbox"
-                        id="checkbox"
-                        value="true" />
+                        <Input type="text"
+                            id='password'
+                            value={this.state.password}
+                            onChange={this.handleFormFieldChange}
+                            placeholder='password'></Input>
+                    </FieldBody>
+                    <Control>
+                        <Checkbox id="checkbox">Remember Me</Checkbox>
+                        {/* <Label>Remember Me?</Label> */}
+                    </Control>
 
-                    <label htmlFor="checkbox">Remember Me?</label>
-
-                    <button type="submit" onClick={this.handleLogin}>Submit</button>
+                    <Button type="submit" id="login__button" isColor="info">Submit</Button>
+                </Field>
                 </form>
             </div>
         )
