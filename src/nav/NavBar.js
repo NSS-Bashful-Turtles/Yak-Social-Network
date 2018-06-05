@@ -85,7 +85,7 @@ class NavBar extends Component {
                     </NavbarItem>
                     <Input id="input__search" type="text" placeholder="Search" onChange={this.props.setSearchValue}></Input>
                     <NavbarItem id="nav__search" className="nav__pointer" onClick={this.onClickSearch}>Search</NavbarItem>
-                    <NavbarItem id="nav__notifications" className="nav__pointer" onClick={this.onClickNav}>Notifications</NavbarItem>
+                    <NavbarItem id="nav__notifications" className="nav__pointer" onClick={this.onClickNav}>Notifications ({this.props.notifications})</NavbarItem>
                     <NavbarItem id="nav__profile" className="nav__pointer" onClick={this.onClickNav}>Profile</NavbarItem>
                     <NavbarItem id="nav__logout" className="nav__pointer" onClick={this.onClickNav}>Logout</NavbarItem>
                 </NavbarMenu>
