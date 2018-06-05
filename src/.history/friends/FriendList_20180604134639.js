@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Friend from "./friend"
-import { Container } from 'bloomer';
+import Container from "bloomer"
 
 class FriendList extends Component {
     state = { friends: [] }

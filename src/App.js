@@ -1,20 +1,86 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import LoginPage from './LoginRegistration/loginRegistrationPage'
+import Dashboard from './dashboard/Dashboard'
+import NavBar from './nav/NavBar'
+import SearchResults from './search/Search'
+import Profile from './profile/ProfileView'
 
 class App extends Component {
+  state = {
+    currentView: "",
+    searchValue: "",
+    searchType: "",
+    activeUser: ""
+  }
+
+  setActiveUser = function (val) {
+    // if (val) {
+    //   localStorage.setItem("userId", val)
+    // } else {
+    //   localStorage.removeItem("userId")
+    // }
+    this.setState({
+      activeUser: val
+    })
+  }.bind(this)
+
+  setView = function (e) {
+    let view = null
+
+    // Click event triggered switching view
+    if (e.hasOwnProperty("target")) {
+        view = e.target.id.split("__")[1]
+
+        // View switch manually triggered by passing in string
+    } else {
+        view = e
+    }
+
+    // If user clicked logout in nav, empty local storage and update activeUser state
+    if (view === "logout") {
+        this.setActiveUser(null)
+    }
+
+    // Update state to correct view will be rendered
+    this.setState({
+        currentView: view
+    })
+
+}.bind(this)
+
+componentDidMount() {
+  this.setState({
+    activeUser: sessionStorage.getItem("userId")
+  })
+}
+
+  showView = () => {
+
+    if (sessionStorage.getItem("userId") === null) {
+        return <LoginPage setView={this.setView} setActiveUser={this.setActiveUser} />
+    } else {
+        switch (this.state.currentView) {
+            // case "logout":
+            //     return <LoginPage showView={this.showView} setActiveUser={this.setActiveUser} />
+            case "search":
+                return <SearchResults searchValue={this.state.searchValue} searchType={this.state.searchType} />
+            case "profile":
+                return <Profile userId={this.state.activeUser}/>
+            case "home":
+            default:
+                return <Dashboard activeUser={this.state.activeUser} />
+        }
+    }
+}
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+    return(
+      <div>
+        <NavBar setView={this.setView}/>
+        {this.showView()}
       </div>
-    );
+    )
   }
 }
 
