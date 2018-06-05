@@ -10,9 +10,9 @@ class App extends Component {
   state = {
     currentView: "",
     searchValue: "",
-    searchType: "Search for",
+    searchType: "all",
     activeUser: "",
-    searchDisplay: "Search for"
+    searchDisplay: "All"
   }
 
   setActiveUser = function (val) {
