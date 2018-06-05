@@ -9,7 +9,7 @@ class PostsResults extends Component {
         results: []
     }
 
-    componentDidMount() {
+    runSearch = function() {
         fetch(`http://localhost:8088/posts?q=${this.props.searchString}&private=false&_expand=user`)
             .then(r => r.json())
 
@@ -19,6 +19,18 @@ class PostsResults extends Component {
                 })
             })
     }
+
+    componentDidMount() {
+        this.runSearch()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps !== this.props) {
+            this.runSearch()
+        }
+    }
+
+
 
     render() {
         return (
