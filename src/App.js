@@ -12,7 +12,10 @@ class App extends Component {
     searchValue: "",
     searchType: "all",
     activeUser: "",
-    searchDisplay: "All"
+    searchDisplay: "All",
+    likeNotifications: [],
+    friendRequestNotifications: [],
+    eventNotifications: []
   }
 
   setActiveUser = function (val) {
@@ -64,6 +67,13 @@ componentDidMount() {
   this.setState({
     activeUser: sessionStorage.getItem("userId")
   })
+  fetch(`http://localhost:8088/likeNotifications?recieverId=${this.state.activeUser}&_expand=user`)
+    .then(r => r.json())
+    .then(response => {
+      this.setState({
+        likeNotifications: response
+      })
+    })
 }
 
   showView = () => {
