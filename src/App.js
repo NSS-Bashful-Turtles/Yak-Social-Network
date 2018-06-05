@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import LoginPage from './LoginRegistration/loginRegistrationPage'
 import Dashboard from './dashboard/Dashboard'
 import NavBar from './nav/NavBar'
 import SearchResults from './search/Search'
 import Profile from './profile/ProfileView'
+import Registration from './LoginRegistration/register'
 
 class App extends Component {
   state = {
@@ -69,11 +69,11 @@ componentDidMount() {
   showView = () => {
 
     if (sessionStorage.getItem("userId") === null) {
-        return <LoginPage setView={this.setView} setActiveUser={this.setActiveUser} />
+        return <Registration setActiveUser={this.setActiveUser} setView={this.setView} />
     } else {
         switch (this.state.currentView) {
             case "logout":
-                return <LoginPage setView={this.setView} setActiveUser={this.setActiveUser} />
+                return <Registration setActiveUser={this.setActiveUser} setView={this.setView} />
             case "search":
                 return <SearchResults searchValue={this.state.searchValue} searchType={this.state.searchType} />
             case "profile":
@@ -101,7 +101,13 @@ componentDidMount() {
   render() {
     return(
       <div>
-        <NavBar setView={this.setView} setSearchType={this.setSearchType} setSearchValue={this.setSearchValue} searchDisplay={this.state.searchDisplay} deleteActiveUser={this.deleteActiveUser}/>
+        <NavBar setView={this.setView} 
+          setSearchType={this.setSearchType} 
+          setSearchValue={this.setSearchValue} 
+          searchDisplay={this.state.searchDisplay} 
+          deleteActiveUser={this.deleteActiveUser} 
+          activeUser={this.state.activeUser}
+          setActiveUser={this.setActiveUser} />
         {this.showView()}
       </div>
     )
