@@ -23,13 +23,6 @@ class Search extends Component {
     }
 
     // checks to make sure user selected a search parameter
-    componentDidMount() {
-        if (this.props.searchType === "Search for") {
-            this.setState({
-                searchCompleted: false
-            })
-        }
-    }
 
     runSearch() {
         if (this.props.searchType === "Search for") {
