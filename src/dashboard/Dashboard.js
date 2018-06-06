@@ -12,7 +12,7 @@ class Dashboard extends Component {
         return (
             <Container>
                 <Title>Dashboard</Title>
-                <NewsFeed />
+                <NewsFeed activeUser={this.props.activeUser}/>
                 <FriendList />
                 <Calendar />
                 <AddList />

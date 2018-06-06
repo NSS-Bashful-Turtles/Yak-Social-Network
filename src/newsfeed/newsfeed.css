@@ -12,3 +12,10 @@
 .file{
     text-align: center;
 }
+.show-likes{
+    display: none;
+}
+
+.other-likes{
+    color:blue;
+}

@@ -30,7 +30,7 @@ class Publish extends Component {
 
     makePublicPost = function(){
         const newPost = {
-            userId: "1",
+            userId: this.props.activeUser,
             timeStamp: new Date(),
             content: this.state.content,
             image: "",
@@ -51,7 +51,7 @@ class Publish extends Component {
             alert("Please choose a friend")
         }else{
             const newPost = {
-                userId: "1",
+                userId: this.props.activeUser,
                 timeStamp: new Date(),
                 content: this.state.content,
                 image: "",
@@ -78,7 +78,7 @@ class Publish extends Component {
                 </div>
                 <button id="publicPost" onClick={this.makePublicPost}>Public Post</button>
                 <button id="privatePost" onClick={this.makePrivatePost}>Private Post</button>
-                <FriendDropdown callback={this.getReceiverId}/>
+                <FriendDropdown callback={this.getReceiverId} activeUser={this.props.activeUser}/>
             </div>
         )
     }

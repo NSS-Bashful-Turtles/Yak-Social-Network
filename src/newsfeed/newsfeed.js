@@ -17,7 +17,7 @@ class NewsFeed extends Component {
         fetch(`http://localhost:8088/posts?private=false&_expand=user`)
         .then(r => r.json())
         .then(response => {
-            console.log(response);
+            console.log(response)
             this.setState({
                 posts: response
             })
@@ -25,7 +25,7 @@ class NewsFeed extends Component {
     }.bind(this);
 
     loadPrivatePosts = function(){
-        fetch(`http://localhost:8088/posts?userId=2&private=true&_expand=user`)
+        fetch(`http://localhost:8088/posts?userId=${this.props.activeUser}&private=true&_expand=user`)
         .then(r => r.json())
         .then(response => {
             this.setState({
@@ -43,7 +43,7 @@ class NewsFeed extends Component {
     render() {
         return (
             <div>
-                <Publish />
+                <Publish activeUser={this.props.activeUser}/>
                 <div className="newsfeed-header">
                 <h1>NEWSFEED</h1>
                 <button value="Public Posts" onClick={this.loadPublicPosts}>Public Posts</button>
@@ -51,7 +51,9 @@ class NewsFeed extends Component {
                 </div>
                 {
                 this.state.posts.map(element => (
-                    [<Posts
+                    <div key={element.id}>
+                    <Posts
+                    activeUser={this.props.activeUser}
                     image={element.image}
                     content={element.content}
                     key={element.id}
@@ -60,8 +62,10 @@ class NewsFeed extends Component {
                     userImage={element.user.image}
                     userName={element.user.username}
                     timeStamp={element.timeStamp}
-                    />,
-                    <Likes id={element.id} />]
+                    />
+                    <Likes id={element.id} activeUser={this.props.activeUser}/>
+                    </div>
+
                 ))
                 }
             </div>
