@@ -12,9 +12,7 @@ class AllResults extends Component {
         events: []
     }
 
-    // fetch the collections for each search type based on search string
-    // and set state of related array
-    componentDidMount() {
+    runSearch = function() {
         fetch(`http://localhost:8088/posts?q=${this.props.searchString}&private=false&_expand=user`)
             .then(r => r.json())
             .then(response => {
@@ -36,6 +34,18 @@ class AllResults extends Component {
                     events: response
                 })
             })
+    }
+
+    // fetch the collections for each search type based on search string
+    // and set state of related array
+    componentDidMount() {
+        this.runSearch()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps !== this.props) {
+            this.runSearch()
+        }
     }
 
     render() {

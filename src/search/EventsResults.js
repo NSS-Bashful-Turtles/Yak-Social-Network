@@ -9,7 +9,7 @@ class EventsResults extends Component {
         results: []
     }
 
-    componentDidMount() {
+    runSearch = function() {
         fetch(`http://localhost:8088/events?q=${this.props.searchString}`)
             .then(r => r.json())
 
@@ -18,6 +18,16 @@ class EventsResults extends Component {
                     results: response
                 })
             })
+    }
+
+    componentDidMount() {
+        this.runSearch()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps !== this.props) {
+            this.runSearch()
+        }
     }
 
     render() {

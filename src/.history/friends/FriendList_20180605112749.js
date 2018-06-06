@@ -8,32 +8,34 @@ class FriendList extends Component {
 
 
     componentDidMount() {
-        const userId = this.props.activeUser
-        let friendsList = []
+        const userId = parseInt(sessionStorage.getItem('userId'))
         fetch(`http://localhost:8088/friendships?user1Id=${userId}`)
+        // Must be explicit on how to parse the response
         .then(response => response.json())
         .then(response => {
-            //add all user 2 id values to array
-            response.forEach( friend => friendsList.push(friend.user2Id))
             fetch(`http://localhost:8088/friendships?user2Id=${userId}`)
             .then(user2 => user2.json())
+            .then(user2 => user2.push(response)
+        })
 
-            // JSON parsed data comes to this then()
-            .then(user2 => {
-                //add all user 2 key values to array
-                user2.forEach( friend => friendsList.push(friend.user1Id))
-                const fl = friendsList.map(p => `id=${p}&`).join("")
-                fetch(`http://localhost:8088/users?${fl}`)// add array of id values to this to return friends
-                .then(response => response.json())
-                .then(users => {
+        // JSON parsed data comes to this then()
+        .then(apiFriends => {
+            fetch('http://localhost:8088/users')
+            .then(response => response.json())
+            .then(users => {
                     let friendUser = []
-                    users.forEach( friend => friendUser.push(friend))
+                    users.forEach( user => {
+                        apiFriends.forEach( friend =>{
+                            if (friend.user2Id === user.id || friend.user1Id === user.id ){
+                                friendUser.push(user)
+                            }
+                        })
+                    })
                     this.setState({
                         friends:friendUser
                     })
                 })
             })
-        })
     }
 
     render() {

@@ -8,7 +8,7 @@ class PeopleResults extends Component {
         results: []
     }
 
-    componentDidMount() {
+    runSearch = function() {
         fetch(`http://localhost:8088/users?q=${this.props.searchString}`)
             .then(r => r.json())
 
@@ -17,6 +17,16 @@ class PeopleResults extends Component {
                     results: response
                 })
             })
+    }
+
+    componentDidMount() {
+        this.runSearch()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps !== this.props) {
+            this.runSearch()
+        }
     }
 
     render() {

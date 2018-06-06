@@ -8,7 +8,7 @@ class FriendList extends Component {
 
 
     componentDidMount() {
-        const userId = this.props.activeUser
+        const userId = sessionStorage.getItem('userId')
         let friendsList = []
         fetch(`http://localhost:8088/friendships?user1Id=${userId}`)
         .then(response => response.json())
