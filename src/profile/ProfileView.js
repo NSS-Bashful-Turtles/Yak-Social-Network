@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Hero, Container, HeroBody, Title, Box, Button, Section } from 'bloomer';
 import ProfileHeader from './ProfileHeader';
 import UserPosts from './UserPosts';
 import UserProfileInteraction from './UserProfileInteraction';

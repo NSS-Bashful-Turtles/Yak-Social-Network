@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Section, Title } from 'bloomer'
+import { Container, Title } from 'bloomer'
 import NewsFeed from '../newsfeed/newsfeed';
 import FriendList from '../friends/FriendList'
 import Calendar from '../calendar/Calendar'
