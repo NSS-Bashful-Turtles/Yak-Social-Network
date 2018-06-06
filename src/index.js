@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import 'bulma'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
