@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Content, Button } from 'bloomer';
+import { Content, } from 'bloomer';
 import './Add.css'
 
 class Add extends Component {

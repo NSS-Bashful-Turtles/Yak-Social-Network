@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
 // Using bloomer tags to import bulma styling
-import { Navbar, NavbarItem, Input, Control, Button, NavbarBurger, NavbarBrand, NavbarMenu, NavbarLink, NavbarDropdown } from "bloomer";
+import { Navbar, NavbarItem, Input, NavbarBurger, NavbarBrand, NavbarMenu, NavbarLink, NavbarDropdown } from "bloomer";
 import 'bulma/css/bulma.min.css'
 import './NavBar.css'
+import Login from '../LoginRegistration/login'
 
 class NavBar extends Component {
 
@@ -65,31 +65,47 @@ class NavBar extends Component {
     }.bind(this)
 
     render() {
-        return (
-            <Navbar>
-                <NavbarBrand>
-                    <NavbarItem>Yak</NavbarItem>
-                    <NavbarBurger isActive={this.state.isActive} onClick={this.onClickNav} />
-                </NavbarBrand>
-                <NavbarMenu isActive={this.state.isActive}>
-                    <NavbarItem id="nav__home" onClick={this.onClickNav}>Home</NavbarItem>
-                    <NavbarItem hasDropdown isHoverable>
-                        <NavbarLink>Search For: {this.props.searchDisplay}</NavbarLink>
-                        <NavbarDropdown>
-                            <NavbarItem className="nav__pointer" id="all" onClick={this.props.setSearchType}>All</NavbarItem>
-                            <NavbarItem className="nav__pointer" id="people" onClick={this.props.setSearchType}>People</NavbarItem>
-                            <NavbarItem className="nav__pointer" id="posts" onClick={this.props.setSearchType}>Posts</NavbarItem>
-                            <NavbarItem className="nav__pointer" id="events" onClick={this.props.setSearchType}>Events</NavbarItem>
-                        </NavbarDropdown>
-                    </NavbarItem>
-                    <Input id="input__search" type="text" placeholder="Search" onChange={this.props.setSearchValue}></Input>
-                    <NavbarItem id="nav__search" className="nav__pointer" onClick={this.onClickSearch}>Search</NavbarItem>
-                    <NavbarItem id="nav__notifications" className="nav__pointer" onClick={this.onClickNav}>Notifications</NavbarItem>
-                    <NavbarItem id="nav__profile" className="nav__pointer" onClick={this.onClickNav}>Profile</NavbarItem>
-                    <NavbarItem id="nav__logout" className="nav__pointer" onClick={this.onClickNav}>Logout</NavbarItem>
-                </NavbarMenu>
-            </Navbar>
-        )
+        if (this.props.activeUser !== null){
+            // debugger
+            return (
+                <Navbar>
+                    <NavbarBrand>
+                        <NavbarItem>Yak</NavbarItem>
+                        <NavbarBurger isActive={this.state.isActive} onClick={this.onClickNav} />
+                    </NavbarBrand>
+                    <NavbarMenu isActive={this.state.isActive}>
+                        <NavbarItem id="nav__home" onClick={this.onClickNav}>Home</NavbarItem>
+                        <NavbarItem hasDropdown isHoverable>
+                            <NavbarLink>Search For: {this.props.searchDisplay}</NavbarLink>
+                            <NavbarDropdown>
+                                <NavbarItem className="nav__pointer" id="all" onClick={this.props.setSearchType}>All</NavbarItem>
+                                <NavbarItem className="nav__pointer" id="people" onClick={this.props.setSearchType}>People</NavbarItem>
+                                <NavbarItem className="nav__pointer" id="posts" onClick={this.props.setSearchType}>Posts</NavbarItem>
+                                <NavbarItem className="nav__pointer" id="events" onClick={this.props.setSearchType}>Events</NavbarItem>
+                            </NavbarDropdown>
+                        </NavbarItem>
+                        <Input id="input__search" type="text" placeholder="Search" onChange={this.props.setSearchValue}></Input>
+                        <NavbarItem id="nav__search" className="nav__pointer" onClick={this.onClickSearch}>Search</NavbarItem>
+                        <NavbarItem id="nav__notifications" className="nav__pointer" onClick={this.onClickNav}>Notifications</NavbarItem>
+                        <NavbarItem id="nav__profile" className="nav__pointer" onClick={this.onClickNav}>Profile</NavbarItem>
+                        <NavbarItem id="nav__logout" className="nav__pointer" onClick={this.onClickNav}>Logout</NavbarItem>
+                    </NavbarMenu>
+                </Navbar>
+            )
+        } else {
+            return(
+                <Navbar>
+                    <NavbarBrand>
+                        <NavbarItem>Yak</NavbarItem>
+                        {/* <NavbarBurger isActive={this.state.isActive} onClick={this.onClickNav} /> */}
+                        <NavbarItem>
+                            <Login setActiveUser={this.props.setActiveUser} setView={this.props.setView}/>
+                        </NavbarItem>
+                    </NavbarBrand>
+                </Navbar>
+            )
+        }
+
     }
 }
 

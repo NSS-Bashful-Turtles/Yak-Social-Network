@@ -28,7 +28,7 @@ class AddList extends Component {
         //get an array of the adds currently on the page
         const oldAddList = this.state.adsList
         //create new add list by filtering out the add they clicked on
-        const newAddList = oldAddList.filter(add => add.id !== parseInt(e.target.id))
+        const newAddList = oldAddList.filter(add => add.id !== parseInt(e.target.id, 10))
         //set state to the new array of ads
         this.setState({
             adsList: newAddList

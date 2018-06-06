@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Title } from 'bloomer'
+import { Container, Section, Title } from 'bloomer'
 import NewsFeed from '../newsfeed/newsfeed';
 import FriendList from '../friends/FriendList'
 import Calendar from '../calendar/Calendar'
@@ -12,7 +12,7 @@ class Dashboard extends Component {
         return (
             <Container>
                 <Title>Dashboard</Title>
-                <NewsFeed activeUser={this.props.activeUser} postUserId={this.props.postUserId}/>
+                <NewsFeed />
                 <FriendList activeUser={this.props.activeUser}/>
                 <Calendar />
                 <AddList />
