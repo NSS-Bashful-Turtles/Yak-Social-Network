@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import Posts from "./Posts"
 import Publish from "./Publish"
 import "./newsfeed.css"
+import Likes from './Likes';
 
 class NewsFeed extends Component {
     // set default data for the component
     // if xhr request does not complete the default information will let you know
     constructor(props) {
         super(props)
-
         this.state = {
             posts: []
         }
@@ -17,6 +17,7 @@ class NewsFeed extends Component {
         fetch(`http://localhost:8088/posts?private=false&_expand=user`)
         .then(r => r.json())
         .then(response => {
+            console.log(response)
             this.setState({
                 posts: response
             })
@@ -24,7 +25,7 @@ class NewsFeed extends Component {
     }.bind(this);
 
     loadPrivatePosts = function(){
-        fetch(`http://localhost:8088/posts?userId=2&private=true&_expand=user`)
+        fetch(`http://localhost:8088/posts?userId=${this.props.activeUser}&private=true&_expand=user`)
         .then(r => r.json())
         .then(response => {
             this.setState({
@@ -42,7 +43,7 @@ class NewsFeed extends Component {
     render() {
         return (
             <div>
-                <Publish />
+                <Publish activeUser={this.props.activeUser}/>
                 <div className="newsfeed-header">
                 <h1>NEWSFEED</h1>
                 <button value="Public Posts" onClick={this.loadPublicPosts}>Public Posts</button>
@@ -50,7 +51,10 @@ class NewsFeed extends Component {
                 </div>
                 {
                 this.state.posts.map(element => (
-                    <Posts image={element.image}
+                    <div key={element.id}>
+                    <Posts
+                    activeUser={this.props.activeUser}
+                    image={element.image}
                     content={element.content}
                     key={element.id}
                     firstName={element.user.name.first}
@@ -59,6 +63,9 @@ class NewsFeed extends Component {
                     userName={element.user.username}
                     timeStamp={element.timeStamp}
                     />
+                    <Likes id={element.id} activeUser={this.props.activeUser}/>
+                    </div>
+
                 ))
                 }
             </div>
