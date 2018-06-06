@@ -3,6 +3,15 @@ import { Image, Content,Delete, Media, MediaLeft, MediaRight, MediaContent, } fr
 import "./newsfeed.css"
 
 class Posts extends Component {
+
+    addButton = function () {
+        if (this.props.activeUser === this.props.postUserId) {
+            return (
+                <MediaRight><Delete id={this.props.postId} onClick={this.props.deletePost} /></MediaRight>
+            )
+        }
+    }.bind(this)
+
     render() {
         return (
             <div className="posts">
@@ -24,7 +33,7 @@ class Posts extends Component {
                             </p>
                         </Content>
                     </MediaContent>
-                    <MediaRight><Delete /></MediaRight>
+                    {this.addButton()}
                 </Media>
             </div>
         )

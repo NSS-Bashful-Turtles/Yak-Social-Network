@@ -143,11 +143,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar setView={this.setView} 
-          setSearchType={this.setSearchType} 
-          setSearchValue={this.setSearchValue} 
-          searchDisplay={this.state.searchDisplay} 
-          deleteActiveUser={this.deleteActiveUser} 
+        <NavBar setView={this.setView}
+          setSearchType={this.setSearchType}
+          setSearchValue={this.setSearchValue}
+          searchDisplay={this.state.searchDisplay}
+          deleteActiveUser={this.deleteActiveUser}
           activeUser={this.state.activeUser}
           setActiveUser={this.setActiveUser} />
         {this.showView()}
