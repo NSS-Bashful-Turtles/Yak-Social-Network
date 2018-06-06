@@ -33,7 +33,6 @@ class ProfileView extends Component {
 
             //set properties that are provided by the user request
             .then(response => {
-                console.log(response)
                 this.setState({
                     id: response.id,
                     username: response.username,
@@ -51,7 +50,6 @@ class ProfileView extends Component {
                         isCurrentUser: false
                     })
                 }
-                console.log(this.state.isCurrentUser)
             })
 
         //fetch the 5 most recent posts by the user and update the response array in the component state
