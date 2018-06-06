@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-
 // Using bloomer tags to import bulma styling
 import { Navbar, NavbarItem, Input, Control, Button, NavbarBurger, NavbarBrand, NavbarMenu, NavbarLink, NavbarDropdown } from "bloomer";
 import 'bulma/css/bulma.min.css'

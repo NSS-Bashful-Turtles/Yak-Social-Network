@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Posts from "./Posts"
+import { Button, Title } from "bloomer"
 import Publish from "./Publish"
 import "./newsfeed.css"
 
@@ -33,6 +34,18 @@ class NewsFeed extends Component {
         })
     }.bind(this);
 
+
+    deletePost = function(event){
+        console.log(event.target.id)
+        fetch(`http://localhost:8088/posts/${event.target.id}`, {
+            method: `DELETE`
+        })
+
+        this.loadPublicPosts()
+        this.loadPrivatePosts()
+    }.bind(this)
+
+
     // on component mount, request userid by the property userId
     componentDidMount() {
         this.loadPublicPosts();
@@ -44,9 +57,9 @@ class NewsFeed extends Component {
             <div>
                 <Publish />
                 <div className="newsfeed-header">
-                <h1>NEWSFEED</h1>
-                <button value="Public Posts" onClick={this.loadPublicPosts}>Public Posts</button>
-                <button value="Private Posts" onClick={this.loadPrivatePosts}>Private Posts</button>
+                <Title isSize={1}>NEWSFEED</Title >
+                <Button value="Public Posts" onClick={this.loadPublicPosts}>Public Posts</Button>
+                <Button value="Private Posts" onClick={this.loadPrivatePosts}>Private Posts</Button>
                 </div>
                 {
                 this.state.posts.map(element => (
@@ -58,6 +71,10 @@ class NewsFeed extends Component {
                     userImage={element.user.image}
                     userName={element.user.username}
                     timeStamp={element.timeStamp}
+                    postId={element.id}
+                    deletePost={this.deletePost}
+                    postUserId={element.userId}
+                    activeUser={this.props.activeUser}
                     />
                 ))
                 }

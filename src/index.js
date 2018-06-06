@@ -23,11 +23,5 @@ import InitialLoad from './InitialLoad'
 
 
 
-ReactDOM.render(
-    <Router>
-        <div>
-            <App />
-        </div>
-    </Router>
-    , document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 registerServiceWorker();

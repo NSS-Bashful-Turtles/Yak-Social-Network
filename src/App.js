@@ -62,8 +62,8 @@ componentDidMount() {
         return <LoginPage setView={this.setView} setActiveUser={this.setActiveUser} />
     } else {
         switch (this.state.currentView) {
-            // case "logout":
-            //     return <LoginPage showView={this.showView} setActiveUser={this.setActiveUser} />
+            case "logout":
+                return <LoginPage showView={this.showView} setActiveUser={this.setActiveUser} />
             case "search":
                 return <SearchResults searchValue={this.state.searchValue} searchType={this.state.searchType} />
             case "profile":
