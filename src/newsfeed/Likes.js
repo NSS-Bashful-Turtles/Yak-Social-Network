@@ -48,6 +48,7 @@ class Likes extends Component {
             })
         }
     }
+
     likePost = function(){
         fetch(`http://localhost:8088/likes?publicPostId=${this.props.id}&userId=${this.props.activeUser}`)
         .then(r => r.json())
@@ -59,6 +60,12 @@ class Likes extends Component {
                     userId: this.props.activeUser,
                     publicPostId: this.props.id
                 }
+                const newLikeNotification = {
+                    userId: this.props.activeUser,
+                    postId: this.props.id,
+                    receiverId: null
+
+                }
                 fetch("http://localhost:8088/likes",{
                 method: "POST",
                 headers: {
@@ -66,6 +73,13 @@ class Likes extends Component {
                 },
                 body: JSON.stringify(newLike)
                 })
+                fetch("http://localhost:8088/likeNotifications",{
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newLikeNotification)
+                    })
             }
         })
     }.bind(this);
